@@ -1,0 +1,36 @@
+---
+title: 'Webpack loader for Fonts'
+date: 2015-12-19
+---
+
+While I was learning [React](https://facebook.github.io/react/) with [Webpack](https://webpack.github.io/), I wanted to try with real time example. Hence I was implementing a [Bootstrap](http://getbootstrap.com/) temulate using React. There are more font awesome fonts used in Bootstrap. I was having difficulty of including in my Webpack builder. Tried googling around, and the solution which I've got is like this:
+
+```javascript
+// Font and images
+{
+  test: /\\.(woff2?|svg|jpe?g|png|gif|ico)$/,
+  loader: "url?limit=10000"
+},
+{
+  test: /\\.(ttf|eot)$/,
+  loader: "file"
+}
+```
+
+In the above code I'm using [url-loader](https://www.npmjs.com/package/url-loader) and [file-loader](https://www.npmjs.com/package/file-loader). The problem is the font-awesome fonts are rendered as, for instance **fontawesome.woff2?v=4.3**.
+
+If you see, there is a query string after the font file name. That was causing me an issue while building using webpack. It always throws an error, that my loader for the module is not found. I fixed it by using as follows:
+
+```javascript
+// Font and images
+{
+  test: /\\.((woff2?|svg)(\\?v=\[0-9\]\\.\[0-9\]\\.\[0-9\]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
+  loader: 'url?limit=10000'
+},
+{
+  test: /\\.((ttf|eot)(\\?v=\[0-9\]\\.\[0-9\]\\.\[0-9\]))|(ttf|eot)$/,
+  loader: 'file'
+}
+```
+
+I believe it helps someone who got stuck in this kind of situation.
