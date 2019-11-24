@@ -1,6 +1,8 @@
 const React = require('react')
 const { createGlobalStyle } = require('styled-components')
 
+require('prismjs/themes/prism-dark.css')
+
 const Layout = require('./src/components/layout').default
 
 const GlobalStyle = createGlobalStyle`
@@ -92,6 +94,12 @@ const GlobalStyle = createGlobalStyle`
       text-decoration: none;
       color: tomato;
     }
+  }
+
+  pre {
+    background-color: #313940;
+    padding: 10px;
+    overflow: auto;
   }
 `
 

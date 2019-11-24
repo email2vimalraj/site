@@ -22,7 +22,6 @@ module.exports = {
             }
           },
           'gatsby-remark-smartypants',
-          '@weknow/gatsby-remark-twitter',
           'gatsby-remark-import-code'
         ],
         remarkPlugins: [require('remark-slug')]
@@ -40,6 +39,16 @@ module.exports = {
       options: {
         path: `posts`,
         name: 'posts'
+      }
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`
+          }
+        ]
       }
     }
   ],
