@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
 import { graphql, useStaticQuery } from 'gatsby'
+import Hamburger from './hamburger'
 
 const StyledNav = styled.nav`
   padding: 5px 20px;
@@ -158,7 +159,7 @@ const Header = () => {
               setOpenMenu(!openMenu)
             }}
           >
-            X
+            <Hamburger />
           </a>
         </ToggleItem>
       </StyledUl>
