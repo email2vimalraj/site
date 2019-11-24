@@ -1,7 +1,7 @@
 import React from 'react'
 import PostComponent from '../components/post'
 
-const Post = () => {
+const PostOld = () => {
   return (
     <>
       <PostComponent />
@@ -9,4 +9,4 @@ const Post = () => {
   )
 }
 
-export default Post
+export default PostOld

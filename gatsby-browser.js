@@ -79,6 +79,20 @@ const GlobalStyle = createGlobalStyle`
     font-size: 28px;
     line-height: 1.25;
   }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
+      color: tomato;
+    }
+  }
 `
 
 exports.wrapPageElement = ({ element, props }) => {
