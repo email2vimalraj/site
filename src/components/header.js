@@ -58,10 +58,6 @@ const LogoItem = styled(StyledListItem)`
 const ToggleItem = styled(StyledListItem)`
   order: 1;
 
-  a {
-    font-size: 20px;
-  }
-
   ${up('tablet')} {
     flex: 1;
     text-align: right;
@@ -92,7 +88,6 @@ const ButtonMenuItem = styled(MenuItem)`
 
     a {
       padding: 7.5px 15px;
-      border: 1px solid #006d6d;
 
       &:hover {
         text-decoration: none;
