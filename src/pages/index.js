@@ -1,12 +1,10 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
+import React from 'react'
+import Posts from '../components/posts'
 
-import Layout from '../components/layout'
-import Header from '../components/header'
-
-export default ({ data }) => (
-  <Layout>
-    <Header />
-    <h1>Hello</h1>
-  </Layout>
+const Home = () => (
+  <>
+    <Posts />
+  </>
 )
+
+export default Home

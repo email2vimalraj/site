@@ -5,11 +5,10 @@ I love logs and build observability systems.
 
 module.exports = {
   plugins: [
-    'gatsby-plugin-theme-ui',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-theme-waves',
+    `gatsby-plugin-styled-components`,
     {
       resolve: 'gatsby-plugin-mdx',
       options: {

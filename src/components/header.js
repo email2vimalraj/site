@@ -1,15 +1,115 @@
-/** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import React from 'react'
+import styled from 'styled-components'
+import { up } from 'styled-breakpoints'
 import { graphql, useStaticQuery } from 'gatsby'
+
+const StyledNav = styled.nav`
+  padding: 5px 20px;
+  border-bottom: 1px solid #2f363d;
+`
+
+const StyledUl = styled.ul`
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  ${up('tablet')} {
+    justify-content: center;
+  }
+`
+
+const StyledListItem = styled.li`
+  font-size: 16px;
+  padding: 15px 5px;
+  white-space: nowrap;
+
+  a {
+    color: rgb(217, 215, 224);
+    text-decoration: none;
+  }
+
+  ${up('desktop')} {
+    display: block;
+    width: auto;
+    order: 1;
+    padding: 15px 10px;
+  }
+`
+
+const LogoItem = styled(StyledListItem)`
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  ${up('tablet')} {
+    flex: 1;
+  }
+
+  ${up('desktop')} {
+    order: 0;
+  }
+`
+
+const ToggleItem = styled(StyledListItem)`
+  order: 1;
+
+  a {
+    font-size: 20px;
+  }
+
+  ${up('tablet')} {
+    flex: 1;
+    text-align: right;
+    order: 2;
+  }
+
+  ${up('desktop')} {
+    display: none;
+  }
+`
+
+const MenuItem = styled(StyledListItem)`
+  order: 3;
+  width: 100%;
+  text-align: center;
+  display: ${props => (props.active ? 'block' : 'none')};
+`
+
+const ButtonMenuItem = styled(MenuItem)`
+  order: 2;
+  border-bottom: ${props => (props.secondary ? '1px solid #2f363d' : '')};
+
+  ${up('tablet')} {
+    width: auto;
+    order: 1;
+    display: block;
+    border: ${props => (props.secondary ? 0 : '')};
+
+    a {
+      padding: 7.5px 15px;
+      border: 1px solid #006d6d;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  ${up('desktop')} {
+    order: 2;
+    padding-right: 0;
+  }
+`
 
 const query = graphql`
   query SiteData {
     site {
       siteMetadata {
-        title
-        url
         logo
-        twitterUsername
       }
     }
     imageSharp {
@@ -20,29 +120,49 @@ const query = graphql`
   }
 `
 
-function Header() {
+const Header = () => {
+  const [openMenu, setOpenMenu] = React.useState(false)
   const data = useStaticQuery(query)
 
   return (
-    <div
-      sx={{
-        display: 'flex',
-        flexDirection: 'row'
-      }}
-    >
-      <img src={data.imageSharp.fixed.src} alt="logo" />
+    <StyledNav>
+      <StyledUl>
+        <LogoItem>
+          <a href="/">
+            <img src={data.imageSharp.fixed.src} alt="Vimalraj Selvam Logo" />
+          </a>
+        </LogoItem>
 
-      <div
-        sx={{
-          display: 'flex'
-        }}
-      >
-        <Styled.ul>
-          <Styled.li>Home</Styled.li>
-          <Styled.li>Posts</Styled.li>
-        </Styled.ul>
-      </div>
-    </div>
+        <MenuItem active={openMenu}>
+          <a href="/">Posts</a>
+        </MenuItem>
+        <MenuItem active={openMenu}>
+          <a href="/">Talks</a>
+        </MenuItem>
+        <MenuItem active={openMenu}>
+          <a href="/">About</a>
+        </MenuItem>
+
+        <ButtonMenuItem active={openMenu}>
+          <a href="/">Twitter</a>
+        </ButtonMenuItem>
+        <ButtonMenuItem active={openMenu} secondary>
+          <a href="/">Github</a>
+        </ButtonMenuItem>
+
+        <ToggleItem>
+          <a
+            href="/"
+            onClick={e => {
+              e.preventDefault()
+              setOpenMenu(!openMenu)
+            }}
+          >
+            X
+          </a>
+        </ToggleItem>
+      </StyledUl>
+    </StyledNav>
   )
 }
 
