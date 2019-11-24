@@ -1,0 +1,131 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.47d1b5bf16c505af7810.css">code[class*=language-],pre[class*=language-]{color:#fff;background:none;text-shadow:0 -.1em .2em #000;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}:not(pre)>code[class*=language-],pre[class*=language-]{background:#4d4033}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border:.3em solid #7a6652;border-radius:.5em;box-shadow:inset 1px 1px .5em #000}:not(pre)>code[class*=language-]{padding:.15em .2em .05em;border-radius:.3em;border:.13em solid #7a6652;box-shadow:inset 1px 1px .3em -.1em #000;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#998066}.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.constant,.token.number,.token.property,.token.symbol,.token.tag{color:#d1949e}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#bde052}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f5b83d}.token.atrule,.token.attr-value,.token.keyword{color:#d1949e}.token.important,.token.regex{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.deleted{color:red}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true"></title><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><link as="script" rel="preload" href="/styles-7d80867f00087d927dc3.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-fc6b7d673d21db92d6fd.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-897c9dd6c4ce5585a002.js"/><link as="script" rel="preload" href="/webpack-runtime-d4005e6e7a9e7cc9bfbe.js"/><link as="fetch" rel="preload" href="/page-data/post/react-hooks-lift-up-pass-down-state-using-usecontext-and-usereducer/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">React Hooks: Lift up / pass down state using useContext and useReducer</h2><p>Long post alert!</p><p>I’ve ran into a situation where I had many child and sibling components trying to share the state between them. Earlier, I used <code>prop</code> to send a method to share the updated states between the components. At one point of time, the number of props kept increasing and I hated that.</p><p>Then came a <code>context</code> based approach to store the state in a global store and share it across. But even with the <code>context</code> API, you had to have a <code>render props</code> to consume the stored state from the global <code>context</code>. You will soon realise that your component becomes a nested, non-maintainable and haunting to look back.</p><p>Now this post talks about how we can leverage the latest React’s <code>hooks</code> concepts to achieve the same with a cleaner code.</p><p>Let’s first build the sample UI with some child &amp; sibling components.</p><h2 id="lets-ui">Let’s UI</h2><p>Head on to the <a href="https://codesandbox.io">CodeSandbox</a> to quickly experiment. Make sure that you create a <code>React</code> code sandbox.</p><p>Replace the <code>index.js</code> with the following:</p><pre><code class="language-jsx">import React from &#x27;react&#x27;
+import ReactDOM from &#x27;react-dom&#x27;
+
+function App() {
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;h1&gt;Lift up / Pass down state&lt;/h1&gt;
+
+      &lt;UserList /&gt;
+      &lt;AddGenderToUser /&gt;
+      &lt;AddAgeToUser /&gt;
+    &lt;/div&gt;
+  )
+}
+
+function UserList() {
+  return (
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;span&gt;Vimalraj Selvam&lt;/span&gt;
+        &lt;button type=&quot;button&quot;&gt;Edit&lt;/button&gt;
+      &lt;/li&gt;
+
+      &lt;li&gt;
+        &lt;span&gt;Bhuvaneswari Vimalraj&lt;/span&gt;
+        &lt;button type=&quot;button&quot;&gt;Edit&lt;/button&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  )
+}
+
+function AddGenderToUser({ username }) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Add gender to {username}&lt;/h2&gt;
+      &lt;button type=&quot;button&quot;&gt;Add Age&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+
+function AddAgeToUser({ username }) {
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Add Age to {username}&lt;/h2&gt;
+      &lt;button type=&quot;button&quot;&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+
+const rootElement = document.getElementById(&#x27;root&#x27;)
+ReactDOM.render(&lt;App /&gt;, rootElement)
+</code></pre><p>Here I’ve 3 child components to parent <code>App</code> component: <code>UserList</code>, <code>AddGenderToUser</code> and <code>AddAgeToUser</code>.</p><p>This is very simple example. So don’t think much about the usecase of this application.</p><p>I wanted to show the <code>AddGenderToUser</code> component only when the <code>Edit</code> button for a particular user is clicked and update the title of the of the component with selected username.</p><p>The same thing goes for <code>AddAgeToUser</code> component, upon clicking the <code>Add Age</code> button from the <code>AddGenderToUser</code> component.</p><p>First, let create a initial state of the application when no user is selected.</p><pre><code class="language-js">const initialState = {
+  username: null,
+  gender: null,
+  age: null
+}
+</code></pre><p>Then create our reducer method to perform different actions. The actions which I can think of are:</p><ul><li>Update the user</li><li>Set the gender for the current user</li><li>Set the age for the current user</li></ul><p>Let’s put this in a <code>reducer</code> function:</p><pre><code class="language-js">const UPDATE_USER = &#x27;UPDATE_USER&#x27;
+const SET_GENDER = &#x27;SET_GENDER&#x27;
+const SET_AGE = &#x27;SET_AGE&#x27;
+
+function reducer(state, action) {
+  switch (action.type) {
+    case UPDATE_USER:
+      return {
+        username: action.username,
+        gender: null,
+        age: null
+      }
+    case SET_GENDER:
+      return {
+        username: state.username,
+        gender: action.gender,
+        age: null
+      }
+    case SET_AGE:
+      return {
+        username: state.username,
+        gender: state.gender,
+        age: action.age
+      }
+    default:
+      return initialState
+  }
+}
+</code></pre><p>Our reducer method is very simple. It takes values from the <code>action</code> parameter and sets it to current state.</p><p>Now let’s use this reducer function in our parent <code>App</code> component using <code>useReducer</code> hook from the react. So that we can consume the properties of reducer through the <code>context</code>.</p><p>Let’s add the below line just before the <code>return</code> statement of <code>App</code> component.</p><pre><code class="language-js">const [user, dispatch] = React.useReducer(reducer, initialState)
+</code></pre><p>Here <code>user</code> is the current state and <code>dispatch</code> is the method through which we trigger various actions defined on the reducer. To do that, we have to pass the <code>dispatch</code> method to down the line and also if any updates happens at the <code>state</code> object, the parent / other children of parent should also be aware about.</p><p>To achieve the above objective, we have to leverage <code>context</code> API from react to store our state and dispatch.</p><p>Let’s initialize the <code>context</code> with the following line. This line should be before your <code>App</code> function (it really doesn’t matter).</p><pre><code class="language-js">const MyContext = React.createContext(null)
+</code></pre><p>I’ve initialized the context with null. We’ve to put our state and dispatch into the context. To do that, let’s edit our <code>App</code> component by wrapping all the childrens with <code>context&#x27;s</code> provider. The updated <code>App</code> component should look like below:</p><pre><code class="language-jsx">&lt;MyContext.Provider value={{ user, dispatch }}&gt;
+  &lt;UserList /&gt;
+  {user.username &amp;&amp; &lt;AddGenderToUser /&gt;}
+  {user.gender &amp;&amp; &lt;AddAgeToUser /&gt;}
+&lt;/MyContext.Provider&gt;
+</code></pre><p>Great, now we can access the <code>user</code> state and the corresponding <code>dispatch</code> method down the line. Also, I’ve added a conditional rendering of few child elements based on the <code>user</code> state properties <code>username</code> &amp; <code>gender</code>.</p><p>Let’s update our <code>UserList</code> component to trigger the <code>UPDATE_USER</code> action upon clicking on <code>Edit</code> button for a particular user. To do that, we’ve to get the <code>dispatch</code> method from the <code>context</code> using <code>useContext</code> hook from React.</p><p>The rewritten <code>UserList</code> component:</p><pre><code class="language-jsx">function UserList() {
+  const { dispatch } = useContext(MyContext)
+  return (
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;span&gt;Vimalraj Selvam&lt;/span&gt;
+        &lt;button
+          type=&quot;button&quot;
+          onClick={() =&gt; dispatch({ type: UPDATE_USER, username: &#x27;Vimalraj&#x27; })}
+        &gt;
+          Edit
+        &lt;/button&gt;
+      &lt;/li&gt;
+
+      {/* Removed for brevity */}
+    &lt;/ul&gt;
+  )
+}
+</code></pre><p>We’re dispatching <code>UPDATE_USER</code> action and sending the <code>username</code> along with to update the property of the state. Now when you click on the <code>Edit</code> button for a particular user, you can see the <code>AddGenderToUser</code> component appears. But we still don’t see the username in the appeared component. Let’s fix that!</p><pre><code class="language-jsx">function AddGenderToUser() {
+  const { user, dispatch } = useContext(MyContext)
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Add gender to {user.username}&lt;/h2&gt;
+      &lt;button
+        type=&quot;button&quot;
+        onClick={() =&gt; dispatch({ type: SET_GENDER, gender: &#x27;??&#x27; })}
+      &gt;
+        Add Age
+      &lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre><p>We’re getting the current <code>user</code> state and <code>dispatch</code> method. We extract the <code>username</code> property to display in a title and trigger <code>SET_GENDER</code> action upon clicking on <code>Add Age</code> button.</p><p>You can repeat the same for the <code>AddAgeToUser</code> function as well.</p><p>The completed version is available in the code sandbox, please feel free to view here.</p><p><a href="https://codesandbox.io/s/pw5zlq8zj0?fontsize=14"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Lift up / pass down state"/></a></p><p>In the code sandbox, I’ve slightly updated the <code>App</code> component to show the details once the age is updated.</p><p>If this post helped you, please hit like and share.</p></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/react-hooks-lift-up-pass-down-state-using-usecontext-and-usereducer/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-897c9dd6c4ce5585a002.js"],"component---src-templates-post-js":["/component---src-templates-post-js-fc6b7d673d21db92d6fd.js"],"component---src-pages-index-js":["/component---src-pages-index-js-53ce1de268c26107a374.js"]};/*]]>*/</script><script src="/webpack-runtime-d4005e6e7a9e7cc9bfbe.js" async=""></script><script src="/app-897c9dd6c4ce5585a002.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-fc6b7d673d21db92d6fd.js" async=""></script><script src="/styles-7d80867f00087d927dc3.js" async=""></script></body></html>

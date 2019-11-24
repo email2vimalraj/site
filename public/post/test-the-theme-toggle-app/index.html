@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.47d1b5bf16c505af7810.css">code[class*=language-],pre[class*=language-]{color:#fff;background:none;text-shadow:0 -.1em .2em #000;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}:not(pre)>code[class*=language-],pre[class*=language-]{background:#4d4033}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border:.3em solid #7a6652;border-radius:.5em;box-shadow:inset 1px 1px .5em #000}:not(pre)>code[class*=language-]{padding:.15em .2em .05em;border-radius:.3em;border:.13em solid #7a6652;box-shadow:inset 1px 1px .3em -.1em #000;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#998066}.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.constant,.token.number,.token.property,.token.symbol,.token.tag{color:#d1949e}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#bde052}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f5b83d}.token.atrule,.token.attr-value,.token.keyword{color:#d1949e}.token.important,.token.regex{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.deleted{color:red}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true"></title><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><link as="script" rel="preload" href="/styles-7d80867f00087d927dc3.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-fc6b7d673d21db92d6fd.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-897c9dd6c4ce5585a002.js"/><link as="script" rel="preload" href="/webpack-runtime-d4005e6e7a9e7cc9bfbe.js"/><link as="fetch" rel="preload" href="/page-data/post/test-the-theme-toggle-app/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Test the Theme toggle app using react-testing-library</h2><p>In my previous <a href="http://www.vimalselvam.com/2019/05/28/toggle-theme-using-react-hooks/">article</a> we’ve built an app with Theme toggling capability. In this article, let’s test that feature.</p><p>I’ll be using <a href="https://github.com/testing-library/react-testing-library">react-testing-library</a> and <a href="https://github.com/testing-library/jest-dom">jest-dom</a> as a partner library for the <code>react-testing-library</code> for leveraging custom DOM element matchers for Jest.</p><p>Let’s install both the libraries as dev dependencies.</p><pre><code class="language-bash">npm install -D react-testing-library jest-dom
+</code></pre><p>Since we used <code>create-react-app</code>, there is a nice article to get started with running tests in their doc site <a href="https://facebook.github.io/create-react-app/docs/running-tests">here</a>. I highly recommend my readers to read through the doc once.</p><p>As mentioned <a href="https://facebook.github.io/create-react-app/docs/running-tests#option-2-react-testing-library">here</a>, let’s create a <code>setupTests.js</code> under the <code>src</code> directory.</p><pre><code class="language-js">import &#x27;react-testing-library/cleanup-after-each&#x27;
+import &#x27;jest-dom/extend-expect&#x27;
+</code></pre><ul><li>The 1st import ensures the rendered component by <code>react-testing-library</code> is removed after every test ran.</li><li>The 2nd import let’s us use the <code>jest-dom</code>’s custom matchers mainly we use it for assertion.</li></ul><p>Before writing our tests, let’s add an attribute <code>data-testid</code> in the <code>header</code> and <code>button</code> component in our <code>App.js</code> component as like follows:</p><pre><code class="language-html">&lt;header className=&quot;App-header&quot; style={{ backgroundColor: theme.backgroundColor,
+color: theme.color }} data-testid=&quot;header&quot;&gt; &lt;button type=&quot;button&quot;
+onClick={toggle} style={{ backgroundColor: theme.backgroundColor, color:
+theme.color, outline: &#x27;none&#x27; }} data-testid=&quot;toggle-theme-btn&quot; &gt; ...
+</code></pre><p>We’ll be using the <code>data-testid</code> attribute to find the elements in our tests.</p><p>Now let’s create a new test. Go and delete everything on <code>App.test.js</code> and have the following test:</p><pre><code class="language-js">import React from &#x27;react&#x27;
+import { render } from &#x27;react-testing-library&#x27;
+import App from &#x27;./App&#x27;
+
+test(&#x27;renders with light mode default&#x27;, () =&gt; {
+  const { getByTestId } = render(&lt;App /&gt;)
+  expect(getByTestId(&#x27;toggle-theme-btn&#x27;)).toBeInTheDocument()
+  expect(getByTestId(&#x27;header&#x27;)).toHaveStyle(&#x27;background-color: white&#x27;)
+})
+</code></pre><p>In our 1st line, we render our <code>App</code> component and then we assert whether there is a <code>Toggle theme</code> button and the default <code>background color</code> is <code>white</code> using the respective <code>data-testid</code>s.</p><p>Let’s run the test and see whether the run is success.</p><pre><code class="language-bash">npm run test
+</code></pre><p>Hoorah!!! The test ran successfully!</p><p>Now, let’s add another test to validate whether clicking on the toggle button changes the background color.</p><pre><code class="language-js">test(&#x27;toggles the theme&#x27;, () =&gt; {
+  const { getByTestId } = render(&lt;App /&gt;)
+  const toggleBtn = getByTestId(&#x27;toggle-theme-btn&#x27;)
+  fireEvent.click(toggleBtn)
+  expect(getByTestId(&#x27;header&#x27;)).toHaveStyle(&#x27;background-color: black&#x27;)
+  fireEvent.click(toggleBtn)
+  expect(getByTestId(&#x27;header&#x27;)).toHaveStyle(&#x27;background-color: white&#x27;)
+})
+</code></pre><p>Make sure you import <code>fireEvent</code> from the <code>react-testing-library</code>.</p><p>Let’s see the run result. The newly added test failed 😟. Why?</p><pre><code class="language-bash">✕ toggles the theme (29ms)
+
+  ● toggles the theme
+
+    expect(element).toHaveStyle()
+
+    - Expected
+
+    - background-color: black;
+    + background-color: white;
+
+      13 |   const toggleBtn = getByTestId(&#x27;toggle-theme-btn&#x27;)
+      14 |   fireEvent.click(toggleBtn)
+    &gt; 15 |   expect(getByTestId(&#x27;header&#x27;)).toHaveStyle(&#x27;background-color: black&#x27;)
+         |                                 ^
+      16 |   fireEvent.click(toggleBtn)
+      17 |   expect(getByTestId(&#x27;header&#x27;)).toHaveStyle(&#x27;background-color: white&#x27;)
+      18 | })
+
+      at Object.toHaveStyle (src/App.test.js:15:33)
+</code></pre><p>The execution stack trace says that the <code>background-color</code> is still <code>white</code>. That means after firing a <code>click</code> event, the <code>localStorage</code>’s <code>setItem</code> method is not properly triggered.</p><p>To make this work, we should mock our <code>localStorage</code> since the test doesn’t execute on the real browser and don’t have the <code>Storage</code>. Now open up your <code>setupTests.js</code> and append the following lines:</p><pre><code class="language-js">let store = {}
+
+// Mock the `localStorage.getItem` method to return the value stored in the given key
+jest.spyOn(Storage.prototype, &#x27;getItem&#x27;).mockImplementation(key =&gt; {
+  return store[key]
+})
+
+// Mock the `localStorage.setItem` method to insert a given value into the given key
+jest.spyOn(Storage.prototype, &#x27;setItem&#x27;).mockImplementation((key, value) =&gt; {
+  return (store[key] = value + &#x27;&#x27;)
+})
+
+// Mock the `localStorage.clear` method to clear the `store`
+jest.spyOn(Storage.prototype, &#x27;clear&#x27;).mockImplementation(() =&gt; {
+  store = {}
+})
+</code></pre><p>Now let’s run our test and see the results. Still failing for the same reason. Let’s add some debug points with our famous <code>console.log</code> statements in our <code>theme-context.js</code>.</p><p>I have added the following statement in our <code>toggle</code> method within our <code>ThemeProvider</code> function:</p><pre><code class="language-js">console.log(&#x27;&gt;&gt;&gt; clicked&#x27;)
+</code></pre><p>Let’s see the run results and notice whether that statement is printed. Surprisingly, not!</p><p>The reason is our <code>App</code> component in the test is not wrapped with <code>ThemeProvider</code>. We should wrap it. Let’s do that.</p><p>Once you wrapped, your test must pass and the added <code>console.log</code> statement should print twice!!!</p><p>Great work. But do we need to wrap the <code>App</code> component with <code>ThemeProvider</code> in every single test. I heard you saying that’s a pain. But we have a solution for that too.</p><p>So I’ve asked this question to <a href="https://twitter.com/kentcdodds">Kent</a> in <a href="https://twitter.com/email2vimalraj/status/1131496659685220352">twitter here</a>. And I got immediate responses.</p><blockquote><p>Yep. I recommend wrapping, but moving works too. Learn more about wrapping without the pain here: <a href="https://testing-library.com/docs/react-testing-library/setup#custom-render">https://testing-library.com/docs/react-testing-library/setup#custom-render</a></p></blockquote><p>So as per the above, let’s create a test utility file to define our own render method. Create a file called <code>src/test-util.js</code> and add the following:</p><pre><code class="language-js">import React from &#x27;react&#x27;
+import { render } from &#x27;react-testing-library&#x27;
+import { ThemeProvider } from &#x27;./theme-context&#x27;
+
+const AllMyProviders = ({ children }) =&gt; {
+  return &lt;ThemeProvider&gt;{children}&lt;/ThemeProvider&gt;
+}
+
+const MyCustomRender = (component, options) =&gt;
+  render(component, { wrapper: AllMyProviders, ...options })
+
+// re-export everything from the `react-testing-library`
+export * from &#x27;react-testing-library&#x27;
+
+// export our custom render method
+export { MyCustomRender as render }
+</code></pre><p>Let’s go to our test and make few changes:</p><p>Replace</p><pre><code class="language-js">import { render, fireEvent } from &#x27;react-testing-library&#x27;
+</code></pre><p>with</p><pre><code class="language-js">import { render, fireEvent } from &#x27;./test-utils&#x27;
+</code></pre><p>And then, remove the <code>ThemeProvider</code> wrapping for the <code>App</code> component in all the tests. Now execute your test and see.</p><p>The tests should run fine. That’s it for today. If you found this post useful, please hit like and share it.</p></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/test-the-theme-toggle-app/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-897c9dd6c4ce5585a002.js"],"component---src-templates-post-js":["/component---src-templates-post-js-fc6b7d673d21db92d6fd.js"],"component---src-pages-index-js":["/component---src-pages-index-js-53ce1de268c26107a374.js"]};/*]]>*/</script><script src="/webpack-runtime-d4005e6e7a9e7cc9bfbe.js" async=""></script><script src="/app-897c9dd6c4ce5585a002.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-fc6b7d673d21db92d6fd.js" async=""></script><script src="/styles-7d80867f00087d927dc3.js" async=""></script></body></html>

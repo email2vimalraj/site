@@ -1,0 +1,175 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.47d1b5bf16c505af7810.css">code[class*=language-],pre[class*=language-]{color:#fff;background:none;text-shadow:0 -.1em .2em #000;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}:not(pre)>code[class*=language-],pre[class*=language-]{background:#4d4033}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border:.3em solid #7a6652;border-radius:.5em;box-shadow:inset 1px 1px .5em #000}:not(pre)>code[class*=language-]{padding:.15em .2em .05em;border-radius:.3em;border:.13em solid #7a6652;box-shadow:inset 1px 1px .3em -.1em #000;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#998066}.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.constant,.token.number,.token.property,.token.symbol,.token.tag{color:#d1949e}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#bde052}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f5b83d}.token.atrule,.token.attr-value,.token.keyword{color:#d1949e}.token.important,.token.regex{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.deleted{color:red}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true"></title><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><link as="script" rel="preload" href="/styles-7d80867f00087d927dc3.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-fc6b7d673d21db92d6fd.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-897c9dd6c4ce5585a002.js"/><link as="script" rel="preload" href="/webpack-runtime-d4005e6e7a9e7cc9bfbe.js"/><link as="fetch" rel="preload" href="/page-data/post/toggle-theme-using-react-hooks/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Toggle theme using React Hooks</h2><p>I was trying to implement the Dark mode to one of the application which I was working. Most of the examples available in Internet uses either <code>styled-components</code> or any other <code>css-in-js</code> concepts. The application which I’m working on doesn’t have the <code>css-in-js</code> yet. So I want to keep it very simple. Hence, the very first thing that came up is to use React’s <a href="https://reactjs.org/docs/context.html">Context</a> API. Why Context? As per the react documentation:</p><blockquote><p>Context provides a way to pass data through the component tree without having to pass props down manually at every level.</p></blockquote><p>Yes, the definition is very self explanatory. We don’t have to pass the props to every component and down the component tree. Think of this maintains a global state.</p><p>To create a context object, we should use React’s <code>createContext</code> method and pass the default value to it (i.e., initial state).</p><pre><code class="language-javascript">const ThemeContext = React.createContext(initialState)
+</code></pre><p>The <code>ThemeContext</code> object contains a <code>ThemeContext.Provider</code> component, so that the children component can consume the changes / state.</p><p>We’ve pretty much covered the basic of what we need to do further. Let’s build the application which can toggle between light and dark mode. Please note that once I toggle to a particular mode, next time I visit the application, it should retain the same mode. That is, if I toggled to Light mode, next time I visit, it should display the application in Light mode only. So we’ll be using the <code>localStorage</code> to persist the theme selected.</p><p>Create a react app:</p><pre><code class="language-bash">create-react-app my-app
+cd my-app
+npm start
+</code></pre><p>Open it in your favorite editor.</p><p>Create a file called <code>theme-context.js</code> under <code>src</code> directory.</p><pre><code class="language-javascript">const themes = {
+  dark: {
+    backgroundColor: &#x27;black&#x27;,
+    color: &#x27;white&#x27;
+  },
+  light: {
+    backgroundColor: &#x27;white&#x27;,
+    color: &#x27;black&#x27;
+  }
+}
+</code></pre><p>I’m keeping it simple. I’m maintaining two theme types <code>dark</code> and <code>light</code> with some simple background and foreground colors respectively. So if I toggled to <code>dark</code> mode, then I should my page’s backgound color is changed to <code>black</code> and foreground color to <code>white</code> and if light, the other way around.</p><p>Next, let me put in my initial state to put it in <code>createContext</code>.</p><pre><code class="language-javascript">const initialState = {
+  dark: false,
+  theme: themes.light,
+  toggle: () =&gt; {}
+}
+const ThemeContext = React.createContext(initialState)
+</code></pre><p>Then, let’s create a method which wraps all children with <code>ThemeContext.Provider</code> component and export this method and the actual <code>ThemeContext</code> object that we created just before.</p><pre><code class="language-javascript">function ThemeProvider({ children }) {
+  const [dark, setDark] = React.useState(false) // Default theme is light
+
+  // On mount, read the preferred theme from the persistence
+  React.useEffect(() =&gt; {
+    const isDark = localStorage.getItem(&#x27;dark&#x27;) === &#x27;true&#x27;
+    setDark(isDark)
+  }, [dark])
+
+  // To toggle between dark and light modes
+  const toggle = () =&gt; {
+    const isDark = !dark
+    localStorage.setItem(&#x27;dark&#x27;, JSON.stringify(isDark))
+    setDark(isDark)
+  }
+
+  // Filter the styles based on the theme selected
+  const theme = dark ? themes.dark : themes.light
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, dark, toggle }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  )
+}
+
+export { ThemeProvider }
+</code></pre><p>So the final <code>theme-context.js</code> look like this:</p><pre><code class="language-javascript">import React from &#x27;react&#x27;
+
+const themes = {
+  dark: {
+    backgroundColor: &#x27;black&#x27;,
+    color: &#x27;white&#x27;
+  },
+  light: {
+    backgroundColor: &#x27;white&#x27;,
+    color: &#x27;black&#x27;
+  }
+}
+
+const initialState = {
+  dark: false,
+  theme: themes.light,
+  toggle: () =&gt; {}
+}
+const ThemeContext = React.createContext(initialState)
+
+function ThemeProvider({ children }) {
+  const [dark, setDark] = React.useState(false) // Default theme is light
+
+  // On mount, read the preferred theme from the persistence
+  React.useEffect(() =&gt; {
+    const isDark = localStorage.getItem(&#x27;dark&#x27;) === &#x27;true&#x27;
+    setDark(isDark)
+  }, [dark])
+
+  // To toggle between dark and light modes
+  const toggle = () =&gt; {
+    const isDark = !dark
+    localStorage.setItem(&#x27;dark&#x27;, JSON.stringify(isDark))
+    setDark(isDark)
+  }
+
+  const theme = dark ? themes.dark : themes.light
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, dark, toggle }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  )
+}
+
+export { ThemeProvider, ThemeContext }
+</code></pre><p>Open <code>index.js</code> and wrap the <code>App</code> component with our <code>ThemeProvider</code>. So that the theme state can be shared with all the children available within <code>App</code> component.</p><p>The modified <code>index.js</code> look like:</p><pre><code class="language-javascript">import React from &#x27;react&#x27;
+import ReactDOM from &#x27;react-dom&#x27;
+import &#x27;./index.css&#x27;
+import App from &#x27;./App&#x27;
+import * as serviceWorker from &#x27;./serviceWorker&#x27;
+import { ThemeProvider } from &#x27;./theme-context&#x27;
+
+ReactDOM.render(
+  &lt;ThemeProvider&gt;
+    &lt;App /&gt;
+  &lt;/ThemeProvider&gt;,
+  document.getElementById(&#x27;root&#x27;)
+)
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()
+</code></pre><p>Let’s go to <code>App.js</code> and add the following before the <code>return</code> statement:</p><pre><code class="language-javascript">const { theme, toggle, dark } = React.useContext(ThemeContext)
+</code></pre><p>The <code>useContext</code> is the React’s Hook api which is equivalent to <code>ThemeContext.Consumer</code> component. Read more about it <a href="https://reactjs.org/docs/hooks-reference.html#usecontext">here</a>.</p><p>Then add a button before the <code>&lt;img&gt;</code> tag to toggle the theme:</p><pre><code class="language-html">&lt;button
+  type=&quot;button&quot;
+  onClick={toggle}
+  style={{
+    backgroundColor: theme.backgroundColor,
+    color: theme.color,
+    outline: &#x27;none&#x27;
+  }}
+&gt;
+  Toggle to {!dark ? &#x27;Dark&#x27; : &#x27;Light&#x27;} theme
+&lt;/button&gt;
+</code></pre><p>Now in the <code>header</code> tag, add the following attribute:</p><pre><code class="language-javascript">style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+
+</code></pre><p>Take a look at your application (mostly it should be running at <a href="http://localhost:3000">http://localhost:3000</a>). You can see the background color changed to <code>white</code> and the foreground color in <code>black</code>.</p><p>Click on the button to toggle between <code>Dark</code> and <code>Light</code> mode. You can close and re-open the tab or open a new tab of the same application, the theme mode is persisted.</p><p>The entire code of <code>App.js</code>:</p><pre><code class="language-javascript">import React from &#x27;react&#x27;
+import logo from &#x27;./logo.svg&#x27;
+import &#x27;./App.css&#x27;
+import { ThemeContext } from &#x27;./theme-context&#x27;
+
+function App() {
+  const { theme, toggle, dark } = React.useContext(ThemeContext)
+
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;header
+        className=&quot;App-header&quot;
+        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      &gt;
+        &lt;button
+          type=&quot;button&quot;
+          onClick={toggle}
+          style={{
+            backgroundColor: theme.backgroundColor,
+            color: theme.color,
+            outline: &#x27;none&#x27;
+          }}
+        &gt;
+          Toggle to {!dark ? &#x27;Dark&#x27; : &#x27;Light&#x27;} theme
+        &lt;/button&gt;
+        &lt;img src={logo} className=&quot;App-logo&quot; alt=&quot;logo&quot; /&gt;
+        &lt;p&gt;
+          Edit &lt;code&gt;src/App.js&lt;/code&gt; and save to reload.
+        &lt;/p&gt;
+        &lt;a
+          className=&quot;App-link&quot;
+          href=&quot;https://reactjs.org&quot;
+          target=&quot;_blank&quot;
+          rel=&quot;noopener noreferrer&quot;
+        &gt;
+          Learn React
+        &lt;/a&gt;
+      &lt;/header&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default App
+</code></pre><p>Demo:</p><p><a href="https://codesandbox.io/s/themecontexthookapi-uumsb?autoresize=1&amp;fontsize=14&amp;module=%2Fsrc%2FApp.js&amp;view=preview"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit theme-context-hook-api"/></a></p></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/toggle-theme-using-react-hooks/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-897c9dd6c4ce5585a002.js"],"component---src-templates-post-js":["/component---src-templates-post-js-fc6b7d673d21db92d6fd.js"],"component---src-pages-index-js":["/component---src-pages-index-js-53ce1de268c26107a374.js"]};/*]]>*/</script><script src="/webpack-runtime-d4005e6e7a9e7cc9bfbe.js" async=""></script><script src="/app-897c9dd6c4ce5585a002.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-fc6b7d673d21db92d6fd.js" async=""></script><script src="/styles-7d80867f00087d927dc3.js" async=""></script></body></html>
