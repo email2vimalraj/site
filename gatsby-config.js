@@ -18,7 +18,8 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 420,
-              linkImagesToOriginal: false
+              linkImagesToOriginal: true,
+              tracedSVG: true
             }
           },
           'gatsby-remark-smartypants',

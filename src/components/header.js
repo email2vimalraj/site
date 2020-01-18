@@ -132,18 +132,30 @@ const Header = () => {
         <MenuItem active={openMenu}>
           <a href="/">Posts</a>
         </MenuItem>
-        <MenuItem active={openMenu}>
+        {/* <MenuItem active={openMenu}>
           <a href="/">Talks</a>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem active={openMenu}>
-          <a href="/">About</a>
+          <a href="/about">About</a>
         </MenuItem>
 
         <ButtonMenuItem active={openMenu}>
-          <a href="/">Twitter</a>
+          <a
+            href="https://twitter.com/email2vimalraj"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Twitter
+          </a>
         </ButtonMenuItem>
         <ButtonMenuItem active={openMenu} secondary>
-          <a href="/">Github</a>
+          <a
+            href="https://github.com/email2vimalraj"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </a>
         </ButtonMenuItem>
 
         <ToggleItem>

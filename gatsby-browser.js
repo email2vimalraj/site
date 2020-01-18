@@ -1,7 +1,7 @@
 const React = require('react')
 const { createGlobalStyle } = require('styled-components')
 
-require('prismjs/themes/prism-dark.css')
+require('prismjs/themes/prism-okaidia.css')
 
 const Layout = require('./src/components/layout').default
 
@@ -41,9 +41,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
   }
-  ol, ul {
-    list-style: none;
+  strong {
+    font-weight: bold;
   }
+  /* ol, ul {
+    list-style: none;
+  } */
   blockquote, q {
     quotes: none;
   }
@@ -100,6 +103,12 @@ const GlobalStyle = createGlobalStyle`
     background-color: #313940;
     padding: 10px;
     overflow: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  code {
+    background-color: #313940;
   }
 `
 
