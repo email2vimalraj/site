@@ -48,7 +48,8 @@ module.exports = {
         plugins: [
           {
             resolve: `gatsby-remark-prismjs`
-          }
+          },
+          `gatsby-remark-images`
         ]
       }
     }
