@@ -28,10 +28,11 @@ import 'jest-dom/extend-expect'
 Before writing our tests, let's add an attribute `data-testid` in the `header` and `button` component in our `App.js` component as like follows:
 
 ```html
-<header className="App-header" style={{ backgroundColor: theme.backgroundColor,
-color: theme.color }} data-testid="header"> <button type="button"
-onClick={toggle} style={{ backgroundColor: theme.backgroundColor, color:
-theme.color, outline: 'none' }} data-testid="toggle-theme-btn" > ...
+<header className="App-header" style={{ backgroundColor: theme.backgroundColor, color: theme.color }} data-testid="header">
+  <button type="button" onClick={toggle} style={{ backgroundColor: theme.backgroundColor, color: theme.color, outline: 'none' data-testid="toggle-theme-btn" >
+    ...
+  </button>
+</header>
 ```
 
 We'll be using the `data-testid` attribute to find the elements in our tests.

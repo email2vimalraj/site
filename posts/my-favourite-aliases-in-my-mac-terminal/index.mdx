@@ -1,0 +1,67 @@
+---
+title: 'My favourite aliases in Mac Terminal'
+date: 2016-01-10
+---
+
+I always try to automate / reduce my routine daily works. Most of the time I work on Mac Terminal. There are few commands I use many of the time in a day, i.e.,&nbsp;<strong>git</strong> commands.
+
+I love shortcuts, so I create as many aliases possible. Open your <b>bash profile</b> file and add the needed aliases in it. I have my bash profile in <b>~/.bash_profile</b>.
+The below are my favourite aliases especially for git:
+
+```bash
+# GIT aliases
+alias gs='git status '   # Note the trailing space
+alias ga='git add '   # Note the trailing space
+alias gb='git branch '   # Note the trailing space
+alias gc='git commit -m '   # Note the trailing space
+alias gco='git checkout '   # Note the trailing space
+alias gp='git pull'
+alias gpr='git pull --rebase'
+alias gpu='git push -u origin '   # Note the trailing space
+alias gl='git log --oneline'
+alias gst='git stash '   # Note the trailing space
+alias gsl='git stash list'
+alias gsp='git stash pop'
+```
+
+If you notice above, I've trailing spaces on few git commands. That means it may or may not take few parameter. For instance: The <b>gc</b> alias in the above will be used in terminal as:
+
+```bash
+$ gc "Adding README.md file"
+```
+
+The above will be resolved to:
+
+```bash
+$ git commit -m "Adding README.md file"
+```
+
+Other than the git aliases, I've other few aliases which eases my work life.
+
+```bash
+# Maven aliases
+alias mi='mvn clean install '
+alias mt='mvn clean test '
+
+# Appium aliases
+alias apm='appium &amp;amp;'
+
+# Node aliases
+alias nd='node '
+alias nm='npm start '   # All javascript tools I develop will have 'npm start' script for sure
+
+# Compress aliases
+alias zp='zip -r -X '   # Makes the zip without Mac resource files such as _MACOSX, .DS_Store and so on. 1st parameter - zip file name, 2nd parameter - the folder to be zipped.
+alias uzp='unzip '      # Unzips the compressed zip file. 1st parameter - zip file name.
+alias tarc='tar -zcvf ' # 1st parameter - tar.gz file name, 2nd parameter - the folder to be tarred.
+alias tarx='tar -zxvf ' # Untars the compressed tar file. 1st parameter - tar.gz file name.
+
+# Clear screen alias
+alias clr='clear'   # See how lazy I'm to type 5 letter words 'clear' :)
+```
+
+Once you added all your favourite aliases in the <b>.bash_profile</b> file, you will have to source it to make it work. In your terminal type the following command:
+
+```bash
+$ source ~/.bash_profile
+```

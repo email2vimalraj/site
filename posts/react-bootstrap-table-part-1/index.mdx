@@ -67,7 +67,7 @@ class ProductApi {
 export default ProductApi
 ```
 
-The _getProducts_ method will be triggered by the redux action to fetch the data. Refer [src/actions/productActions.js](https://github.com/email2vimalraj/react-bootstrap-table-example/blob/basic-tutorial-part-1/src/actions/productActions.js) on how to trigger from action. We also need the data populated on the table once the page is landed. Refer [src/index.js](https://github.com/email2vimalraj/react-bootstrap-table-example/blob/basic-tutorial-part-1/src/index.js#L13) on how we dispatch an action. Using the redux reducer, we stored the data into the state called **products**. Let's create our component.
+The `getProducts` method will be triggered by the redux action to fetch the data. Refer [src/actions/productActions.js](https://github.com/email2vimalraj/react-bootstrap-table-example/blob/basic-tutorial-part-1/src/actions/productActions.js) on how to trigger from action. We also need the data populated on the table once the page is landed. Refer [src/index.js](https://github.com/email2vimalraj/react-bootstrap-table-example/blob/basic-tutorial-part-1/src/index.js#L13) on how we dispatch an action. Using the redux reducer, we stored the data into the state called **products**. Let's create our component.
 
 ### Components
 
@@ -120,31 +120,31 @@ ProductList.propTypes = {
 export default ProductList;
 ```
 
-We start with importing _BootstrapTable_ and _TableHeaderColumn_ from _react-bootstrap-table_ library.
-Then we initialize our _ProductList_ presentational component with three properties:
+We start with importing `BootstrapTable` and `TableHeaderColumn` from `react-bootstrap-table` library.
+Then we initialize our `ProductList` presentational component with three properties:
 
 <ol>
-	<li>_products_ - an object which we get from our mock api</li>
-	<li>_activePage_ - the current page number</li>
-	<li>_onNavigatePage_ - a function which will call our action (remember the action calls the mockApi) to update the data and updates the active page</li>
+	<li>`products` - an object which we get from our mock api</li>
+	<li>`activePage` - the current page number</li>
+	<li>`onNavigatePage` - a function which will call our action (remember the action calls the mockApi) to update the data and updates the active page</li>
 </ol>
 
-In the return, we initiate the _BootstrapTable_ component with the required parameters which will be passed to our container component to render. Few things to note here:
+In the return, we initiate the `BootstrapTable` component with the required parameters which will be passed to our container component to render. Few things to note here:
 
 <ol>
-	<li>_data_ - takes the list of items to render in the table. In our case we are passing 10 items of product list</li>
-	<li>_fetchInfo_ - in which we specify how much data we have, based on that the number of pages will be calculated. In our case, we are saying 100 rows, so the library will divide 100 by 10 by default and show 10 pages in the pagination links.</li>
-	<li>_options_ - this is where we say what is our current page, what should happen if we navigate to another page and so on.</li>
-	<li>_remote_ - when it is true, the library ensures the data is coming from external source. In our case, it is coming from _mockApi_.</li>
+	<li>`data` - takes the list of items to render in the table. In our case we are passing 10 items of product list</li>
+	<li>`fetchInfo` - in which we specify how much data we have, based on that the number of pages will be calculated. In our case, we are saying 100 rows, so the library will divide 100 by 10 by default and show 10 pages in the pagination links.</li>
+	<li>`options` - this is where we say what is our current page, what should happen if we navigate to another page and so on.</li>
+	<li>`remote` - when it is true, the library ensures the data is coming from external source. In our case, it is coming from `mockApi`.</li>
 </ol>
 
-Next thing, for each field we create a _TableHeaderColumn_ by saying my _id_ column is the unique using _isKey_ attribute.
+Next thing, for each field we create a `TableHeaderColumn` by saying my `id` column is the unique using `isKey` attribute.
 
 Let's create our container component.
 
 #### HomePage
 
-Create _HomePage.js_ in [src/components/home/HomePage.js](https://github.com/email2vimalraj/react-bootstrap-table-example/blob/basic-tutorial-part-1/src/components/home/HomePage.js) and paste the following there:
+Create `HomePage.js` in [src/components/home/HomePage.js](https://github.com/email2vimalraj/react-bootstrap-table-example/blob/basic-tutorial-part-1/src/components/home/HomePage.js) and paste the following there:
 
 ```javascript
 import React, { PropTypes } from 'react'
@@ -203,12 +203,12 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
 ```
 
-Direct jump to _render_ method. The _render_ method simply initiates a _ProductList_ component with the required properties which we have explained earlier.
+Direct jump to `render` method. The `render` method simply initiates a `ProductList` component with the required properties which we have explained earlier.
 
-The _onNavigatePage_ method is implemented here which takes care of calling the action for the required page and udpates the _activePage_ state so that the pagination control set the current page as active. That's it.
+The `onNavigatePage` method is implemented here which takes care of calling the action for the required page and udpates the `activePage` state so that the pagination control set the current page as active. That's it.
 
-Now if you run _npm start -s_, and head to browser where it opened _<a href="http://localhost:3005" target="_blank">http://localhost:3005</a>_ you could see the table with pagination as like this:
+Now if you run `npm start -s`, and head to browser where it opened [http://localhost:3005](http://localhost:3005) you could see the table with pagination as like this:
 
-<a href="./react-bootstrap-table-example.png"><img src="./react-bootstrap-table-example-1024x387.png" alt="React bootstrap table example" width="1024" height="387" class="aligncenter size-large wp-image-206" /></a>
+![React bootstrap table example](./react-bootstrap-table-example-1024x387.png)
 
 We'll again meet soon with the Part-2.
