@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
 import { graphql, useStaticQuery } from 'gatsby'
 import Hamburger from './hamburger'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const StyledNav = styled.nav`
   padding: 5px 20px;
@@ -140,22 +141,22 @@ const Header = () => {
         </MenuItem>
 
         <ButtonMenuItem active={openMenu}>
-          <a
+          <OutboundLink
             href="https://twitter.com/email2vimalraj"
             target="_blank"
             rel="noopener noreferrer"
           >
             Twitter
-          </a>
+          </OutboundLink>
         </ButtonMenuItem>
         <ButtonMenuItem active={openMenu} secondary>
-          <a
+          <OutboundLink
             href="https://github.com/email2vimalraj"
             target="_blank"
             rel="noopener noreferrer"
           >
             Github
-          </a>
+          </OutboundLink>
         </ButtonMenuItem>
 
         <ToggleItem>

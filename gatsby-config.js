@@ -50,6 +50,14 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-71748535-1',
+        head: false,
+        pageTransitionDelay: 0
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Vimalraj Selvam`,
