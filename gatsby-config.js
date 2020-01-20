@@ -5,6 +5,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
