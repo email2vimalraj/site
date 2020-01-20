@@ -5,7 +5,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -49,7 +48,19 @@ module.exports = {
           `gatsby-remark-images`
         ]
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Vimalraj Selvam`,
+        short_name: `Vimalraj`,
+        start_url: `/`,
+        background_color: `#1B1F23`,
+        theme_color: `#1B1F23`,
+        icon: `static/android-chrome-512x512.png`
+      }
+    },
+    `gatsby-plugin-offline`
   ],
   siteMetadata: {
     title: `Vimalraj's Blog`,
