@@ -8,7 +8,7 @@ const query = graphql`
       siteMetadata {
         title
         description
-        url
+        siteUrl
         twitterUsername
         image
       }
@@ -22,7 +22,7 @@ const SEO = ({ postMeta, isBlogPost }) => {
   const title = postMeta.title || seo.title
   const description = postMeta.description || seo.description
   const image = seo.image
-  const url = postMeta.slug ? `${seo.url}${postMeta.slug}` : seo.url
+  const url = postMeta.slug ? `${seo.siteUrl}${postMeta.slug}` : seo.siteUrl
 
   return (
     <>

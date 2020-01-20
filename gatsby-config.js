@@ -77,7 +77,8 @@ module.exports = {
         icon: `static/android-chrome-512x512.png`
       }
     },
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`
   ],
   siteMetadata: {
     title: `Vimalraj's Blog`,
@@ -86,7 +87,7 @@ module.exports = {
       I'm passionate about latest technologies and distributed systems. 
       I love logs and help building observability systems.
     `,
-    url: 'https://vimalrajselvam.com',
+    siteUrl: 'https://vimalrajselvam.com',
     twitterUsername: '@email2vimalraj',
     logo: '/favicon-32x32.png',
     image: `https://vimalrajselvam.com/profile-pic.jpg`
