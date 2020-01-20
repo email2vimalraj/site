@@ -10,6 +10,7 @@ export const PageQuery = graphql`
     post: blogPost(id: { eq: $id }) {
       id
       title
+      slug
       date(formatString: "MMMM DD, YYYY")
       excerpt
       body

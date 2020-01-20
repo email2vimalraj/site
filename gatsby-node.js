@@ -26,6 +26,7 @@ exports.sourceNodes = ({ actions, schema }) => {
       fields: {
         id: { type: `ID!` },
         title: { type: `String!` },
+        description: { type: `String` },
         slug: { type: `String!` },
         date: { type: `Date`, extensions: { dateformat: {} } },
         tags: { type: `[String]!` },
@@ -124,6 +125,7 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId }) => {
 
     const fieldData = {
       title: node.frontmatter.title,
+      description: node.frontmatter.description,
       tags: node.frontmatter.tags || [],
       slug,
       date: node.frontmatter.date,

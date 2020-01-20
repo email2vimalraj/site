@@ -113,7 +113,6 @@ const GlobalStyle = createGlobalStyle`
 `
 
 exports.wrapPageElement = ({ element, props }) => {
-  console.log('here')
   return <Layout {...props}>{element}</Layout>
 }
 

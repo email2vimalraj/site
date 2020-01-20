@@ -1,14 +1,10 @@
-const description = `
-I'm known as Vimalraj Selvam. I like to write code and teach. 
-I love logs and build observability systems.
-`
-
 module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -55,10 +51,15 @@ module.exports = {
     }
   ],
   siteMetadata: {
-    title: 'Vimalraj Selvam',
-    description,
-    url: 'https://vimalrajselvam.dev',
+    title: `Vimalraj's Blog`,
+    description: `
+      I'm known as Vimalraj Selvam. I like to write code and teach. 
+      I'm passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    `,
+    url: 'https://vimalrajselvam.com',
     twitterUsername: '@email2vimalraj',
-    logo: '/favicon-32x32.png'
+    logo: '/favicon-32x32.png',
+    image: `https://vimalrajselvam.com/profile-pic.jpg`
   }
 }
