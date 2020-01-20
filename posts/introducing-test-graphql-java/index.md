@@ -1,6 +1,7 @@
 ---
 title: Introducing Test GraphQL Java
 date: 2019-06-02
+slug: /introducing-test-graphql-java/
 ---
 
 I was recently asked by one of my friend how can we test the GraphQL APIs in Java. He is currently exploring `Karate's` capability, however, he doesn’t want to use `Karate` just for this as they’re already using `TestNG` based framework. And there is a [graphql-java](https://github.com/graphql-java/graphql-java) library which let’s you to implement `GraphQL` in Java and test, but using Spring Boot. My main goal is not to introduce Spring Boot just for the sake of testing the `GraphQL` API. I wanted to keep it simple!
