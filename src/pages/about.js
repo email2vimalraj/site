@@ -7,7 +7,7 @@ const About = () => {
       <h1>About Me</h1>
 
       <img
-        src="./profile-pic.jpg"
+        src="/profile-pic.jpg"
         alt="Vimalraj Selvam"
         style={{
           marginTop: '20px',
