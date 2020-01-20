@@ -1,0 +1,186 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.246d67a4ef7e9adeefa5.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true">Deploying GraphQL Server on Heroku</title><link data-react-helmet="true" rel="canonical" href="https://vimalrajselvam.com/deploying-graphql-server-on-heroku/"/><meta data-react-helmet="true" name="description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" property="og:url" content="https://vimalrajselvam.com/deploying-graphql-server-on-heroku/"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:title" content="Deploying GraphQL Server on Heroku"/><meta data-react-helmet="true" property="og:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" property="og:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:creator" content="@email2vimalraj"/><meta data-react-helmet="true" name="twitter:title" content="Deploying GraphQL Server on Heroku"/><meta data-react-helmet="true" name="twitter:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="twitter:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><style type="text/css">.gatsby-resp-image-image{width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;color:transparent;}</style><link rel="alternate" type="application/rss+xml" title="Vimalraj Selvam Blog&#x27;s RSS Feed" href="/rss.xml"/><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><link rel="icon" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#1B1F23"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link as="script" rel="preload" href="/styles-7ff825e96dfd35551199.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-95831d510dcf9cd9f785.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-2c9f7254a1b87ed1aa9a.js"/><link as="script" rel="preload" href="/webpack-runtime-102ada64f5dd71233fc2.js"/><link as="fetch" rel="preload" href="/page-data/post/deploying-graphql-server-on-heroku/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Deploying GraphQL Server on Heroku</h2><p>Today, I’ll show you on how to deploy a simple Graphql server on Heroku. I’m considering the following stack to show my example:</p><ul><li>Mongo (using <strong>mongoose</strong>)</li><li>Express</li><li>GraphQL (using <strong>apollo-server</strong>)</li><li>NodeJS server</li></ul><p>A sample GraphQL server look like this:</p><pre><code class="language-javascript">import express from &#x27;express&#x27;
+import bodyParser from &#x27;body-parser&#x27;
+import { graphqlExpress, graphiqlExpress } from &#x27;apollo-server-express&#x27;
+import { makeExecutableSchema } from &#x27;graphql-tools&#x27;
+
+import { connectToDB } from &#x27;./database&#x27;
+
+// Start the http server
+const startServer = async () =&gt; {
+  const { User } = require(&#x27;./database/models&#x27;)
+
+  // GraphQL Types
+  const typeDefs = `
+    type User {
+      _id: ID!
+      name: String
+      password: String
+    }
+
+    type Query {
+      users: [User]
+    }
+
+    type Mutation {
+      addUser(input: UserInput): User
+    }
+
+    input UserInput {
+      name: String!
+      password: String!
+    }
+  `
+
+  // GraphQL resolvers
+  const resolvers = {
+    Query: {
+      users: async () =&gt; {
+        const res = await User.find()
+        return res
+      }
+    },
+
+    Mutation: {
+      addUser: async (root, args) =&gt; {
+        const res = await User.create(args.input)
+        return res
+      }
+    }
+  }
+
+  // Define a schema
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers
+  })
+
+  // Initiate express and define routes
+  const app = express()
+  app.use(&#x27;/graphql&#x27;, bodyParser.json(), graphqlExpress({ schema }))
+  app.use(&#x27;/&#x27;, graphiqlExpress({ endpointURL: &#x27;/graphql&#x27; }))
+
+  // Initiate the server
+  app.listen(process.env.PORT || 3000, () =&gt; {
+    console.log(`Server started on port: ${process.env.PORT || 3000}`)
+  })
+}
+
+// Connecting to DB and then start the server
+const dbConnectAndStartServer = async () =&gt; {
+  try {
+    await connectToDB()
+    console.log(&#x27;Connected to Mongo successfully&#x27;)
+    startServer()
+  } catch (err) {
+    console.error(`Error connecting to mongo - ${err.message}`)
+    process.exit(1)
+  }
+}
+
+// Entry point
+dbConnectAndStartServer()
+</code></pre><p>I have one Mutation which is used to add an user to the mongo collection and one Query which is used to query all the users from the mongo collection.</p><p>My <code>database.js</code> looks like this:</p><pre><code class="language-javascript">const { Mongoose } = require(&#x27;mongoose&#x27;)
+
+let connection = null
+
+const connectToDB = async () =&gt; {
+  const mongoose = new Mongoose()
+  mongoose.Promise = global.Promise
+
+  let mongoUserCredentials = &#x27;&#x27;
+  if (process.env.MONGO_USER &amp;&amp; process.env.MONGO_PASSWORD) {
+    mongoUserCredentials = `${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@`
+  }
+
+  const MONGO_URL = process.env.MONGO_URL || &#x27;localhost:27017&#x27;
+  const DB_NAME = process.env.MONGO_DB_NAME || &#x27;sample-db&#x27;
+  const MONGO_CONNECTION_STRING = `mongodb://${mongoUserCredentials}${MONGO_URL}/${DB_NAME}`
+
+  await mongoose.connect(MONGO_CONNECTION_STRING)
+  connection = mongoose
+}
+
+const getDB = () =&gt; {
+  if (!connection) {
+    throw new Error(&#x27;Call connectToDB first&#x27;)
+  }
+  return connection
+}
+
+module.exports = {
+  connectToDB,
+  getDB
+}
+</code></pre><p>I’m taking few inputs through the environment variables because I’ll be using <code>mLab mongodb</code> for the heroku deployment.</p><p>You can download the entire source code from <a href="https://github.com/email2vimalraj/graphql-heroku">here</a>.</p><p>Let’s start deploying our GraphQL server on Heroku now.</p><h1 id="pre-requisites">Pre-requisites</h1><ul><li>You should have the Heroku account.</li><li>You should have the Heroku cli installed. Download from <a href="https://devcenter.heroku.com/articles/heroku-cli">here</a>.</li></ul><h1 id="setup">Setup</h1><p>Go to <a href="https://dashboard.heroku.com/apps">heroku dashboard</a> by logging in.</p><p>You will see something like this:</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:420px">
+      <a class="gatsby-resp-image-link" href="/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/3b243/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png" style="display:block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom:8.30078125%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/svg+xml,%3csvg%20xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%20width=\&#x27;400\&#x27;%20height=\&#x27;33\&#x27;/%3e&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="Heroku dashboard" title="Heroku dashboard" src="/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/635b1/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png" srcSet="/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/759d4/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png 105w,/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/6a467/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png 210w,/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/635b1/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png 420w,/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/b2a12/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png 630w,/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/04a72/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png 840w,/static/9a2b1aec6d33c495220bc1fd7ca0d5ff/3b243/Screen-Shot-2018-02-06-at-11.23.52-PM-1024x85.png 1024w" sizes="(max-width: 420px) 100vw, 420px" loading="lazy"/>
+  </a>
+    </span></p><p>Click on <code>New</code> from the right side and click on <code>Create New App</code>.</p><p>Enter the app name. In my case, I’ve entered as graphql-heroku. You may not get the same name since I’ve already taken. :D</p><p>Click on Create app button.</p><p>Once your app is created, goto <code>Resources</code> tab and search for <code>mLab MongoDB</code>.
+In the popup, select <code>Sandbox - Free</code> and click on Provision. Once provisioned successfully, you can see something like this:</p><p><img src="http://www.vimalselvam.com/wp-content/uploads/2018/02/Screen-Shot-2018-02-06-at-11.36.29-PM.png" alt="Successful provision"/></p><p>Click on <code>mLab MongoDB :: Mongodb</code> which will open up a mLab console on a new tab.</p><p>Click on <strong>Users</strong> tab and click on <code>Add Database User</code> button to create a new database user. Set a user name and password to access the mongodb database. Kindly note the following items:</p><ul><li>Username</li><li>Password</li><li>DB Hostname</li><li>DB port number</li><li>DB name</li></ul><p>Now go back to your heroku dashboard.</p><p>Open up your terminal in your local machine and type as follows:</p><pre><code class="language-bash">heroku login
+</code></pre><p>Follow the prompts to create your SSH public key and login to heroku.</p><p>Then set the following environment configs:</p><pre><code class="language-bash">heroku config:set NPM_CONFIG_PRODUCTION=false -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+heroku config:set MONGO_USER=&lt;&lt;&lt;db user name&gt;&gt;&gt; -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+heroku config:set MONGO_PASSWORD=&lt;&lt;&lt;db password&gt;&gt;&gt; -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+heroku config:set MONGO_URL=&lt;&lt;&lt;mongo host name&gt;&gt;&gt;:&lt;&lt;&lt;mongo port number&gt;&gt;&gt; -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+heroku config:set MONGO_DB_NAME=&lt;&lt;&lt;mongo db name&gt;&gt;&gt; -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+</code></pre><p>Ufff!!! Too many configs right! That’s fine, it is an one-time setup.</p><p>Finally, run if you have an existing git repository:</p><pre><code class="language-bash">heroku git:remote -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+</code></pre><p>If not:</p><pre><code class="language-bash">cd &lt;&lt;&lt;project directory&gt;&gt;&gt;
+git init
+heroku git:remote -a &lt;&lt;&lt;app name&gt;&gt;&gt;
+git add .
+git commit -m &quot;Ready to serve GraphQL&quot;
+</code></pre><p>Now we are going to deploy our GraphQL server. Sit tight!</p><pre><code class="language-bash">git push heroku master
+</code></pre><p>You should see the build happening in your terminal and at the end you see something like this:</p><pre><code class="language-bash">remote: -----&gt; Launching...
+...
+remote:        https://graphql-heroku.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/graphql-heroku.git
+ * [new branch]      master -&gt; master
+</code></pre><p>Great! Our graphql server is successfully deployed on Heroku. So if you hit <a href="https://graphql-heroku.herokuapp.com/">https://graphql-heroku.herokuapp.com/</a> in your browser, you can see the <code>GraphiQL</code> launching.</p><p>To create a new user, execute the following in GraphiQL:</p><pre><code class="language-graphql">mutation addUser {
+  addUser(input: { name: &quot;Vimal&quot;, password: &quot;secret&quot; }) {
+    name
+    password
+  }
+}
+</code></pre><p>and to query the list of users, you can execute the following:</p><pre><code class="language-graphql">query Users {
+  users {
+    name
+    password
+  }
+}
+</code></pre><p>Hurray! We have successfully deployed in Heroku and the GraphQL server along with GraphiQL interface can be shared across any one in the world.</p><p>If you like this post, kindly hit the STAR button and share it.</p></div></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-71748535-1', 'auto', {});
+      
+      
+      
+      
+      
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/deploying-graphql-server-on-heroku/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-2c9f7254a1b87ed1aa9a.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2d0fc0de1872f24a0bdc.js"],"component---src-templates-post-js":["/component---src-templates-post-js-95831d510dcf9cd9f785.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c216697d184e0051dad9.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9d9195261b37718958b6.js"]};/*]]>*/</script><script src="/webpack-runtime-102ada64f5dd71233fc2.js" async=""></script><script src="/app-2c9f7254a1b87ed1aa9a.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-95831d510dcf9cd9f785.js" async=""></script><script src="/styles-7ff825e96dfd35551199.js" async=""></script></body></html>

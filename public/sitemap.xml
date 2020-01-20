@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://vimalrajselvam.com/post/introducing-test-graphql-java/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/test-the-theme-toggle-app/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/toggle-theme-using-react-hooks/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/form-in-modal-using-react-hooks-mistakes-and-lesson-learnt/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/react-hooks-lift-up-pass-down-state-using-usecontext-and-usereducer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/python-module-management/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/python-package-management-with-pipenv/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/react-usereducer-hooks-demo-with-nested-select-boxes/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/drawer-navigation-for-react-native-with-react-native-elements/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/deploying-graphql-server-on-heroku/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/test-automation-using-nightwatch-part-1/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/shipping-extentx-in-a-docker-container/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/emailable-extent-report-for-testng/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/customizing-extent-report/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/testng-extent-report/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/react-bootstrap-table-part-1/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/appium-parallel-execution-on-openstf/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/appium-parallel-execution-using-testng/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/selenium-grid-for-appium-mobile-automation/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/cucumber-custom-html-report-using-extent-report/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/my-favourite-aliases-in-my-mac-terminal/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/automating-tasks-using-apple-script/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/post/webpack-loader-for-fonts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://vimalrajselvam.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+</urlset>

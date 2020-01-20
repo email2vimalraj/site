@@ -1,0 +1,209 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.246d67a4ef7e9adeefa5.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true">Form in Modal using React hooks - mistakes and lesson learnt</title><link data-react-helmet="true" rel="canonical" href="https://vimalrajselvam.com/form-in-modal-using-react-hooks-mistakes-and-lesson-learnt/"/><meta data-react-helmet="true" name="description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" property="og:url" content="https://vimalrajselvam.com/form-in-modal-using-react-hooks-mistakes-and-lesson-learnt/"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:title" content="Form in Modal using React hooks - mistakes and lesson learnt"/><meta data-react-helmet="true" property="og:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" property="og:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:creator" content="@email2vimalraj"/><meta data-react-helmet="true" name="twitter:title" content="Form in Modal using React hooks - mistakes and lesson learnt"/><meta data-react-helmet="true" name="twitter:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="twitter:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><style type="text/css">.gatsby-resp-image-image{width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;color:transparent;}</style><link rel="alternate" type="application/rss+xml" title="Vimalraj Selvam Blog&#x27;s RSS Feed" href="/rss.xml"/><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><link rel="icon" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#1B1F23"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link as="script" rel="preload" href="/styles-7ff825e96dfd35551199.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-95831d510dcf9cd9f785.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-2c9f7254a1b87ed1aa9a.js"/><link as="script" rel="preload" href="/webpack-runtime-102ada64f5dd71233fc2.js"/><link as="fetch" rel="preload" href="/page-data/post/form-in-modal-using-react-hooks-mistakes-and-lesson-learnt/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Form in Modal using React hooks - mistakes and lesson learnt</h2><p>Recently, I’ve stumbled upon a problem while building a <strong>Form</strong> in the <strong>Modal</strong> box. I would like to share that experience and believe it might help.</p><h2 id="modal-and-portals">Modal and Portals</h2><p>I wanted to create a modal which can show some content or the form. The best way to create a modal in React is to use <a href="https://reactjs.org/docs/portals.html">Portal</a>. Because, the modal should always be a individual component outside the DOM hierarchy. The Portal let you do this. Kindly read through the react’s documentation to know more about the Portal and the benefits. Additionally, this <a href="https://www.nearform.com/blog/exploring-react-portals/">post</a> might help you to understand better.</p><p>So, we know what is Portal! Let’s build our <code>Modal</code> component and render as a <code>Portal</code>. I’m using <a href="https://facebook.github.io/create-react-app/">create-react-app</a> CLI tool to generate my react project. Before creating the portal, let’s make sure our <code>./public/index.html</code> has the outer DOM hierarchy.</p><p>Before:</p><pre><code>&lt;body&gt;
+  &lt;noscript&gt;
+    You need to enable JavaScript to run this app.
+  &lt;/noscript&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>After:</p><pre><code>&lt;body&gt;
+  &lt;noscript&gt;
+    You need to enable JavaScript to run this app.
+  &lt;/noscript&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;modal-root&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>I’ve added another <code>div</code> with the value of id attribute as <code>modal-root</code>. That is where we render all our modals.</p><p>Let’s create our <code>Modal</code> component with <code>Portal</code> support. I’ve created this under <code>components/modal/index.js</code></p><pre><code>import React, { useEffect } from &quot;react&quot;;
+import { createPortal } from &quot;react-dom&quot;;
+import { StyledModal } from &quot;./style&quot;;
+
+// Creates a portal outside the DOM hierarchy
+function Portal({ children }) {
+  const modalRoot = document.getElementById(&quot;modal-root&quot;); // A div with id=modal-root in the index.html
+  const element = document.createElement(&quot;div&quot;); // Create a div element which will be mounted within modal-root
+
+  // useEffect bible: https://overreacted.io/a-complete-guide-to-useeffect/
+  useEffect(() =&gt; {
+    modalRoot.appendChild(element);
+
+    // cleanup method to remove the appended child
+    return function cleanup() {
+      modalRoot.removeChild(element);
+    };
+  });
+
+  return createPortal(children, element);
+}
+
+// A modal component which will be used by other components / pages
+function Modal({ children, toggle, open }) {
+  return (
+    &lt;Portal&gt;
+      {open &amp;&amp; (
+        &lt;StyledModal.ModalWrapper onClick={toggle}&gt;
+          &lt;StyledModal.ModalBody onClick={event =&gt; event.stopPropagation()}&gt;
+            &lt;StyledModal.CloseButton onClick={toggle}&gt;
+              &amp;times;
+            &lt;/StyledModal.CloseButton&gt;
+            {children}
+          &lt;/StyledModal.ModalBody&gt;
+        &lt;/StyledModal.ModalWrapper&gt;
+      )}
+    &lt;/Portal&gt;
+  );
+}
+
+export default Modal;
+</code></pre><p>Here, the <code>Portal</code> method creates the portal and uses the <code>useEffect</code> hook to append the <code>div</code> element to the <code>modal-root</code> element and removes while <code>unmounting</code>. Here is the problem I faced, but wait till we uncover the issue.</p><p>The <code>StyledModal</code> is the styled component and the code is below (created under <code>/components/modal/style.js</code>):</p><pre><code>import styled from &quot;styled-components&quot;;
+
+const ModalWrapper = styled.div`
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+const ModalBody = styled.div`
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+`;
+
+const CloseButton = styled.span`
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+  &amp;:hover,
+  &amp;:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+`;
+
+export const StyledModal = {
+  ModalWrapper,
+  ModalBody,
+  CloseButton
+};
+</code></pre><p>If you notice our <code>Modal</code> component, there are 3 props:</p><ul><li>open: A boolean prop to decide whether to show the modal or not.</li><li>toggle: A method prop to toggle <code>open</code> from <code>true</code> to <code>false</code> or vice-versa.</li><li>children: A children component to render within modal. This is usually a modal content.</li></ul><p>To toggle the <code>Modal&#x27;s</code> state, let’s create a new custom hook and call it as <code>useToggle</code>. I’m creating <code>useToggle.js</code> in the <code>src</code> directory:</p><pre><code>import { useState, useCallback } from &quot;react&quot;;
+
+// Toggles between true or false
+function useToggle(initialValue = false) {
+  const [toggle, setToggle] = useState(initialValue);
+
+  return [toggle, useCallback(() =&gt; setToggle(status =&gt; !status), [])];
+}
+
+export default useToggle;
+</code></pre><p>In this user can toggle between <code>true</code> or <code>false</code>. This will be used in our <code>App</code> component.</p><p>Let’s rewrite our <code>App</code> component in the <code>index.js</code>:</p><pre><code>function App() {
+  const [open, setOpen] = useToggle(false);
+
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;h1&gt;Hello CodeSandbox&lt;/h1&gt;
+      &lt;button type=&quot;button&quot; onClick={() =&gt; setOpen()}&gt;
+        Open Modal
+      &lt;/button&gt;
+
+      {open &amp;&amp; (
+        &lt;Modal open={open} toggle={setOpen}&gt;
+          &lt;h1&gt;Hello Modal&lt;/h1&gt;
+        &lt;/Modal&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</code></pre><p>The <code>useToggle</code> hook gives the state of <code>toggle</code> through a parameter called <code>open</code> and the <code>setOpen</code> let you to toggle the value of the <code>open</code>. The rest of the code is self-explanatory.</p><p>When you run, you don’t see any problem. Great! We’ve built the Modal which shows the heading. Let’s extend it and add a form to our modal component with one input box.</p><p>I’ve modified my <code>App</code> component with an <code>input</code> element under the <code>form</code>.</p><pre><code>function App() {
+  const [open, setOpen] = useToggle(false);
+  const [username, setUsername] = useState(&quot;&quot;);
+
+  const onChangeUsername = e =&gt; setUsername(e.target.value);
+
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;h1&gt;Hello CodeSandbox&lt;/h1&gt;
+      &lt;button type=&quot;button&quot; onClick={() =&gt; setOpen()}&gt;
+        Open Modal
+      &lt;/button&gt;
+
+      {open &amp;&amp; (
+        &lt;Modal open={open} toggle={setOpen}&gt;
+          &lt;h1&gt;Hello Modal&lt;/h1&gt;
+
+          &lt;form onSubmit={e =&gt; e.preventDefault()}&gt;
+            &lt;input
+              type=&quot;text&quot;
+              name=&quot;username&quot;
+              value={username}
+              onChange={e =&gt; onChangeUsername(e)}
+            /&gt;
+          &lt;/form&gt;
+        &lt;/Modal&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</code></pre><p>Now run the code and open up the modal. Try to enter more than one character in the displayed input box. Gosh, it is broken!!! For every character, the modal re-renders. Did you see that?</p><p>Okay, how to fix that now? I’ve spent ample of time to understand the issue. With some help of reddit users and <code>useEffect</code> <a href="https://overreacted.io/a-complete-guide-to-useeffect/">bible</a>, I’ve found an issue in our <code>Portal</code> component.</p><p>In our <code>Portal</code> component, we’ve to put the <code>div</code> element into the state and add <code>modal-root</code> and <code>div</code> as dependencies for the <code>useEffect</code>. So that it doesn’t re-render. Let’s do this:</p><pre><code>function Portal({ children }) {
+  const modalRoot = document.getElementById(&quot;modal-root&quot;); // A div with id=modal-root in the index.html
+  const [element] = useState(document.createElement(&quot;div&quot;)); // Create a div element which will be mounted within modal-root
+
+  // useEffect bible: https://overreacted.io/a-complete-guide-to-useeffect/
+  useEffect(() =&gt; {
+    modalRoot.appendChild(element);
+
+    // cleanup method to remove the appended child
+    return function cleanup() {
+      modalRoot.removeChild(element);
+    };
+  }, [modalRoot, element]);
+
+  return createPortal(children, element);
+}
+</code></pre><p>Now run, and try the same which caused the problem. Voila! now it worked.</p><p>So always to remember, make sure <code>useEffect</code> has the dependencies set properly to avoid re-rendering.</p><p>The sample code sandbox can be found here:</p><p><a href="https://codesandbox.io/s/1z2p4wqyjq?fontsize=14"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Modal-Portal-Demo"/></a></p><p>I hope my experience could help someone. If you like this article, kindly hit the <strong>Like</strong> button and <strong>Share</strong>.</p><p><em>Update</em>: After a <a href="https://www.reddit.com/r/reactjs/comments/baujx4/form_in_modal_using_react_hooks_mistakes_and/">reddit</a> user pointed out, we can simplify the <code>Portal</code> without even the hooks.</p><pre><code class="language-javascript">function Portal({ children }) {
+  const modalRoot = document.getElementById(&#x27;modal-root&#x27;) // A div with id=modal-root in the index.html
+
+  return createPortal(&lt;div&gt;{children}&lt;/div&gt;, element)
+}
+</code></pre><p>However, this post still remains valid which shows that user tend to do mistakes while creating <code>useEffect</code> and how to avoid them by managing dependencies for the side effects.</p></div></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-71748535-1', 'auto', {});
+      
+      
+      
+      
+      
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/form-in-modal-using-react-hooks-mistakes-and-lesson-learnt/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-2c9f7254a1b87ed1aa9a.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2d0fc0de1872f24a0bdc.js"],"component---src-templates-post-js":["/component---src-templates-post-js-95831d510dcf9cd9f785.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c216697d184e0051dad9.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9d9195261b37718958b6.js"]};/*]]>*/</script><script src="/webpack-runtime-102ada64f5dd71233fc2.js" async=""></script><script src="/app-2c9f7254a1b87ed1aa9a.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-95831d510dcf9cd9f785.js" async=""></script><script src="/styles-7ff825e96dfd35551199.js" async=""></script></body></html>

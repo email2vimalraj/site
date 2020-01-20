@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.246d67a4ef7e9adeefa5.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true">Automating tasks using Apple Script</title><link data-react-helmet="true" rel="canonical" href="https://vimalrajselvam.com/automating-tasks-using-apple-script/"/><meta data-react-helmet="true" name="description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" property="og:url" content="https://vimalrajselvam.com/automating-tasks-using-apple-script/"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:title" content="Automating tasks using Apple Script"/><meta data-react-helmet="true" property="og:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" property="og:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:creator" content="@email2vimalraj"/><meta data-react-helmet="true" name="twitter:title" content="Automating tasks using Apple Script"/><meta data-react-helmet="true" name="twitter:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="twitter:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><style type="text/css">.gatsby-resp-image-image{width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;color:transparent;}</style><link rel="alternate" type="application/rss+xml" title="Vimalraj Selvam Blog&#x27;s RSS Feed" href="/rss.xml"/><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><link rel="icon" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#1B1F23"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link as="script" rel="preload" href="/styles-7ff825e96dfd35551199.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-95831d510dcf9cd9f785.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-2c9f7254a1b87ed1aa9a.js"/><link as="script" rel="preload" href="/webpack-runtime-102ada64f5dd71233fc2.js"/><link as="fetch" rel="preload" href="/page-data/post/automating-tasks-using-apple-script/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Automating tasks using Apple Script</h2><p>I work in more than one environment like Java, Javascript, Python and so on. So I open many different apps based on the environment that I work. For instance, if I work on Java, then I need my Intellij Idea IDE, Terminal and Browser to be opened. If in Javascript, I need Atom, Terminal and Browser. And in the morning, when I log in to machine, the very first thing that I do is, open Microsoft Outlook to check emails, open Skype to log-in, open Reminders to see any To-Dos for today and so on. I always wanted to group these and automate opening the needed apps based on the environment that I wanted to work on. The solution to this problem is Apple Script.</p><p>Mac comes with two different approaches to automate your frequent tasks:</p><ul><li>Apple Script</li><li>Automator</li></ul><p>In this post, I’ll be covering <code>Apple script</code>. Please watch out for another post on Automator soon.</p><p>To open Apple Script, trigger your Spotlight and search for Apple script editor and hit Return. This will open up the apple script editor:</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:300px">
+      <a class="gatsby-resp-image-link" href="/static/90a66d16504c5ed0110308f4d03a4e58/135ae/Screen-Shot-2016-01-09-at-5.59.06-PM-300x48.png" style="display:block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom:16%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/svg+xml,%3csvg%20xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%20width=\&#x27;400\&#x27;%20height=\&#x27;64\&#x27;%3e%3cpath%20d=\&#x27;M33%2017l-1%206%202-1h5c0%202%203%205%204%203l2-1%203-2c2-1%202-1%202%201l1%203%201-1%202-1c3%200%204-2%204-6%200-2-1-3-4-3l-4%201h-1l-5-1c-3%200-3%200-3%203%200%202%200%202-2-2-3-5-3-5-6%201M0%2044l1%2020%201-2c0-2%201-2%2085-2h84V45l-85-1H2v-8L1%2025v-2L0%2044\&#x27;%20fill=\&#x27;%23d3d3d3\&#x27;%20fill-rule=\&#x27;evenodd\&#x27;/%3e%3c/svg%3e&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="Spotlight Search" title="Spotlight Search" src="/static/90a66d16504c5ed0110308f4d03a4e58/135ae/Screen-Shot-2016-01-09-at-5.59.06-PM-300x48.png" srcSet="/static/90a66d16504c5ed0110308f4d03a4e58/759d4/Screen-Shot-2016-01-09-at-5.59.06-PM-300x48.png 105w,/static/90a66d16504c5ed0110308f4d03a4e58/6a467/Screen-Shot-2016-01-09-at-5.59.06-PM-300x48.png 210w,/static/90a66d16504c5ed0110308f4d03a4e58/135ae/Screen-Shot-2016-01-09-at-5.59.06-PM-300x48.png 300w" sizes="(max-width: 300px) 100vw, 300px" loading="lazy"/>
+  </a>
+    </span></p><p>If you are on a El Captain, this would open a dialog on where to save the script:</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:300px">
+      <a class="gatsby-resp-image-link" href="/static/5e7d5bf033138fea788dc2f216ff2834/135ae/Screen-Shot-2016-01-09-at-6.00.25-PM-300x190.png" style="display:block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom:63.33333333333333%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/svg+xml,%3csvg%20xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%20width=\&#x27;400\&#x27;%20height=\&#x27;253\&#x27;%3e%3cpath%20d=\&#x27;M399%209c0%207-2%2014-2%207%200-3%200-3-1-1l-2%203h-30l-32-1c0-1-1-2-2-1l-1-2-1%201c-1%202-2%202-12%202s-10%200-11-2l-1-1c0%202-2%203-2%201h-1c-2%202-22%203-22%201h-26l-29%201-29-1%205-1%201-3c0-2-1-2-4-2h-3l-2-1c-3%202-7%202-8%200h-3c-2%203-3%203-4%201h-13l-2%201c-2%203-1%204%201%204l3%201-4%201h-4l1-4-1-4-5-1h-3v9l-4-1-6-1-2%201-5%201h-4V9h-8v4c0%203-1%204-3%204l-2-1c0-1-1-2-3-1l-3%201-7%201-6%201V5H81v10c0%201-3%202-7%202h-6l-1-4c0-4-1-4-1-2-1%202-1%202-2%201-2-2-2-2-2%201v4H48c-14%200-14-1-16-3l-1-1-2-1-1%202-1%203H16c-9%200-11-1-11-3-2-3-5-1-5%204v5h399v114c0%20108%200%20114-2%20114H198a7798%207798%200%20002%202h200V128a7027%207027%200%2000-1-119M298%2027v2c0%202%201%202%2010%202%2016%200%2017%200%2017-2%200-3%200-3-13-3l-14%201M5%2030c-2%203%201%204%2011%204h9v-3c0-3%200-3-3-3-4%202-9%202-9%201%200-2-8-1-8%201m19%2010l-1%203c0%203%200%203%206%203l5-1%202%201c1%202%202%202%202%201l4-1%202-2c0-4-1-4-4-3H30l-6-1m22%201l-1%203c0%202%200%202%2010%202%209%200%2010%200%2010-2%201-3%200-3-4-2l-3-1H46M6%2059c-2%201-1%204%200%204h26c2-1%200-4-2-4a245%20245%200%2001-24%200m17%2014c0%203-1%203%2012%204h10v-3c0-3%200-3-2-3l-3%201-1%202h-1l-1-2-4-1h-5c-5-1-5-1-5%202m15%2012c-1%201-9%202-11%201-1-1-3%200-3%203-1%202-1%202%201%202h26c14%200%2016%200%2014-3%200-2-2-2-6-2-5%201-6%200-7-1h-1l-1%201h-2c-3%201-7%200-8-1h-2m-15%2015c-1%205%200%206%2012%206h12l6-1h1l5%201%204-1h1c2%202%205%201%205-2-1-2-1-2-5-2H47l-5-1h-1c-3%202-7%202-15-1l-3%201m-13%2013v5c1%206%2011%205%2011-1l-1-4H10m13%202v3c1%203%201%203%2012%203h12c0%202%204%200%205-2%201-3-1-4-7-4H23m0%2015v4l20%201h19v-3c0-2-1-2-9-2-13%201-24%200-25-1-2-2-4-1-5%201m0%2014c-1%205%200%206%208%206l7-1h3l11%201c8%200%209-1%209-3s-1-2-2-2l-2-1H28c-1-2-4-1-5%200m1%2046c-2%203%200%204%208%204l9%201c1%201%208-1%208-3s-1-2-15-2l-5-1c0-2-5-1-5%201m9%2013H23l1%203%202%203h9c8%200%2010-1%2010-2v-2l-5-1-6-1h-1m-4%2036l-1%203c0%202%202%203%204%202h2c2%201%2011%201%2013-1h4c1%202%207%202%207-1h1c0%203%204%203%204%200s0-3-8-3l-10%202h-3l-5-2h-8\&#x27;%20fill=\&#x27;%23d3d3d3\&#x27;%20fill-rule=\&#x27;evenodd\&#x27;/%3e%3c/svg%3e&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="Save Dialog" title="Save Dialog" src="/static/5e7d5bf033138fea788dc2f216ff2834/135ae/Screen-Shot-2016-01-09-at-6.00.25-PM-300x190.png" srcSet="/static/5e7d5bf033138fea788dc2f216ff2834/759d4/Screen-Shot-2016-01-09-at-6.00.25-PM-300x190.png 105w,/static/5e7d5bf033138fea788dc2f216ff2834/6a467/Screen-Shot-2016-01-09-at-6.00.25-PM-300x190.png 210w,/static/5e7d5bf033138fea788dc2f216ff2834/135ae/Screen-Shot-2016-01-09-at-6.00.25-PM-300x190.png 300w" sizes="(max-width: 300px) 100vw, 300px" loading="lazy"/>
+  </a>
+    </span></p><p>Select New Document and you can see the editor opened:</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:291px">
+      <a class="gatsby-resp-image-link" href="/static/150d71352387744a22d432b7e9008bac/7adc3/Screen-Shot-2016-01-09-at-6.01.58-PM-291x300.png" style="display:block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom:103.09278350515466%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/svg+xml,%3csvg%20xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%20width=\&#x27;400\&#x27;%20height=\&#x27;412\&#x27;%3e%3cpath%20d=\&#x27;M7%202L6%206c0%202%201%203%205%203l6-1c2-1%205%201%205%202l-11%201-11%201a16585%2016585%200%2000345-2c-50%200-55%200-53-2%202-1%203-3%201-5h-14c-2-2-3-1-3%201%200%204%202%206%202%204%201-2%201-2%203%200l5%201h2c1%201-19%201-65%201a2170%202170%200%2001-62-2c2%201%203%201%203-3%200-2-1-2-4-2l-4-1h-10c-2-2-4%200-4%203s1%204%204%204c5%200%207-1%207-3l2%202%201%202h-30a4683%204683%200%2000-102%200l3-2c2%200%203%200%203-3%200-2-1-2-4-2l-4-1H7m26%200l-1%204%201%203%2010-1c9%200%2011%200%2012-2%202-2%201-3-3-3l-7-1H33m168%203c0%203%201%204%202%202h2c1%202%202%202%204%201h10c8%201%207%201%207-5h-10l-11-1c-2-2-4-1-4%203m38-3c-2%200-3%203-1%205%201%201%2010%201%2010-1h1c0%202%201%202%207%202%2010%200%2010%200%2010-2%200-3-4-4-14-3l-5-1h-8m-41%2013l-5%201c-2-1-3-1-3%201l-1%203v-3l-1-2-1%203%201%204h26v-4c0-3-1-4-2-2h-6l-1-1h-7m201%204l-1%205c0%204-1%206-3%205-1-1-1-1-1%203%200%206%200%206-22%206h-20l-1-4-1-4-120-1-122-1c-1-1-1%200-1%203%200%207%200%207-11%207s-12-1-12-6l-1-4c-2-1-2-1-2%201l-1%206v3H70c-11%200-12-1-12-6l-1-4c-2-1-2%200-2%205l-1%205H44c-12%200-12%200-12-6l-1-4c-2-1-3%202-3%208%200%202%200%202-10%202H7l-1-4-1-4-2-4-2-5-1%20195v196h401V216l-1-197-1-2v2M3%2044v365a13062%2013062%200%2000395-1l1-183V43H201L3%2044m23%202h-9c-6%200-8%201-8%202l-1%202c1%201%209%202%2010%201l7-1h11c1%202%206%200%206-2s-1-2-7-1l-7-1h-2M7%20296l-1%203c0%202%200%202%2010%202h10l2%201%208-1c7%200%207%200%207-2s-1-2-4-2l-4-1H7\&#x27;%20fill=\&#x27;%23d3d3d3\&#x27;%20fill-rule=\&#x27;evenodd\&#x27;/%3e%3c/svg%3e&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="Apple Script Editor" title="Apple Script Editor" src="/static/150d71352387744a22d432b7e9008bac/7adc3/Screen-Shot-2016-01-09-at-6.01.58-PM-291x300.png" srcSet="/static/150d71352387744a22d432b7e9008bac/759d4/Screen-Shot-2016-01-09-at-6.01.58-PM-291x300.png 105w,/static/150d71352387744a22d432b7e9008bac/6a467/Screen-Shot-2016-01-09-at-6.01.58-PM-291x300.png 210w,/static/150d71352387744a22d432b7e9008bac/7adc3/Screen-Shot-2016-01-09-at-6.01.58-PM-291x300.png 291w" sizes="(max-width: 291px) 100vw, 291px" loading="lazy"/>
+  </a>
+    </span></p><p>Now we start writing our first Apple script.</p><pre><code>-- Set my app groups
+set workGroup to {&quot;Microsoft Outlook&quot;, &quot;Skype&quot;, &quot;Reminders&quot;}
+set javaGroup to {&quot;Intellij IDEA 15 CE&quot;, &quot;Terminal&quot;}
+set javaScriptGroup to {&quot;Atom&quot;, &quot;Terminal&quot;, &quot;Safari&quot;}
+set myAppGroups to {&quot;Work&quot;, &quot;Java&quot;, &quot;Javascript&quot;}
+</code></pre><p>Above, we defined the different app group lists with list of applications for each group. At the end of the line, created a common list which will be shown to user to select.</p><pre><code>-- Handler for launching selected app group
+on appLauncher(selectedAppGroup)
+repeat with i from 1 to (count of items in selectedAppGroup)
+tell application (item i of selecteAppGroup)
+activate
+end tell
+end repeat
+end appLauncher
+</code></pre><p>Now we created a method to launch the selected app group. We search for the item in the defined app group and tell our application to <b>activate</b> the apps defined in the selected app groups.</p><pre><code>-- Let the user select the group
+set mySelection to choose from list myAppGroups with title &quot;Which app group to launch?&quot;
+</code></pre><p>The above is responsible to show the dialog to the user with the list of app groups defined (i.e., Work, Java and Javascript) and with the title <b>Which app group to launch?</b>.</p><pre><code>-- If user cancels
+if mySelection is false then
+error number -128
+else
+set mySelection to item 1 of mySelection
+
+-- If selection is Work
+if mySelection = (item 1 of myAppGroups) then
+appLauncher(workGroup)
+
+-- If selection is Java
+else if mySelection = (item 2 of myAppGroups) then
+appLauncher(javaGroup)
+
+-- If selection is java script
+else if mySelection = (item 3 of myAppGroups) then
+appLauncher(javaScriptGroup)
+
+else
+return
+end if
+end if
+</code></pre><p>The above is the final makeup to our script. This block of code calls the app launcher handler with the selected app group by the user. Now the entire code look like:</p><pre><code>-- Set my app groups
+set workGroup to {&quot;Microsoft Outlook&quot;, &quot;Skype&quot;, &quot;Reminders&quot;}
+set javaGroup to {&quot;Intellij IDEA 15 CE&quot;, &quot;Terminal&quot;}
+set javaScriptGroup to {&quot;Atom&quot;, &quot;Terminal&quot;, &quot;Safari&quot;}
+set myAppGroups to {&quot;Work&quot;, &quot;Java&quot;, &quot;Javascript&quot;}
+
+-- Handler for launching selected app group
+on appLauncher(selectedAppGroup)
+repeat with i from 1 to (count of items in selectedAppGroup)
+tell application (item i of selecteAppGroup)
+activate
+end tell
+end repeat
+end appLauncher
+
+-- Let the user select the group
+set mySelection to choose from list myAppGroups with title &quot;Which app group to launch?&quot;
+
+-- If user cancels
+if mySelection is false then
+error number -128
+else
+set mySelection to item 1 of mySelection
+
+-- If selection is Work
+if mySelection = (item 1 of myAppGroups) then
+appLauncher(workGroup)
+
+-- If selection is Java
+else if mySelection = (item 2 of myAppGroups) then
+appLauncher(javaGroup)
+
+-- If selection is java script
+else if mySelection = (item 3 of myAppGroups) then
+appLauncher(javaScriptGroup)
+
+else
+return
+end if
+end if
+</code></pre><p>Now click on the <strong>Hammer</strong> button in the editor or press Command + K to compile your code. If you don’t have any syntax issues, the editor will automatically format and syntax highlight your script.</p><p>Then click on <b>Play</b> button to run your script, voila!!!</p><p><span class="gatsby-resp-image-wrapper" style="position:relative;display:block;margin-left:auto;margin-right:auto;max-width:258px">
+      <a class="gatsby-resp-image-link" href="/static/e1d00bbd9438365a6d613f7fc59440a2/4c3b7/Screen-Shot-2016-01-09-at-7.09.11-PM.png" style="display:block" target="_blank" rel="noopener">
+    <span class="gatsby-resp-image-background-image" style="padding-bottom:68.6046511627907%;position:relative;bottom:0;left:0;background-image:url(&#x27;data:image/svg+xml,%3csvg%20xmlns=\&#x27;http://www.w3.org/2000/svg\&#x27;%20width=\&#x27;400\&#x27;%20height=\&#x27;274\&#x27;%3e%3cpath%20d=\&#x27;M70%2014l2%208c1%206%204%207%205%200l1-4%202%204c2%207%204%206%206-1l1-6v-2c-1-2-3%201-3%204%200%204-2%203-3-1-2-6-4-5-6%202v3l-2-4c-1-5-3-7-3-3m76%208v7l1%201%201-1c0-1%201-2%203-2%203%200%205-2%205-5%200-5-2-6-6-6h-4v6m11%201c0%206%200%207%202%207l1-1c0-1%201-2%203-2%203%200%205-2%205-6%200-3-3-5-7-5h-4v7m19-6v10c-3%203%202%206%207%204%202-1%202-2%202-8v-7h-4l-5%201m43%202c-2%206-1%2011%201%2011l1-1c0-1%201-2%203-2%203%200%205-2%205-6s-2-5-6-5c-3%200-4%200-4%203m24%200v5c4%206%2013%202%2010-5-2-4-7-4-10%200m153%20139a2143%202143%200%20003-89c-2-2-3-14-1-14%203%200%202-2%200-2-2-1-2%200-2%20105M48%2062c-1%200-2%2015%200%2015l1-2c0-3%200-3%203-3l4-2c5-4-2-11-8-8m68%204c-3%200-4%2011-1%2011%201%200%202-2%202-5s1-4%202-4l1%204c1%205%202%205%203%200s3-5%203%200c1%206%203%206%203%200%200-5-1-7-4-7l-2%201h-7m66%200c-2%202-3%208-1%2010%203%203%209%200%209-5s-5-7-8-5m98%201c-4%204-2%2010%203%2010%204%200%205-2%205-6%200-5-5-8-8-4M50%20106l4%2012%203-4%202-4%201%204%202%204c1%200%205-10%205-13%200-2-2-1-3%202-1%206-2%207-3%201s-4-5-5%201c-1%205-2%205-3-1-1-4-3-6-3-2m78%2061c-2%200-2%201-2%207%200%205%200%206%202%206l1-2%202-1c5%201%207-4%204-9-1-2-2-2-7-1M11%20270l5%201%205%202%20183%201h181l4-2%205-3H202c-125%200-192%200-191%201\&#x27;%20fill=\&#x27;%23d3d3d3\&#x27;%20fill-rule=\&#x27;evenodd\&#x27;/%3e%3c/svg%3e&#x27;);background-size:cover;display:block"></span>
+  <img class="gatsby-resp-image-image" alt="User Dialog" title="User Dialog" src="/static/e1d00bbd9438365a6d613f7fc59440a2/4c3b7/Screen-Shot-2016-01-09-at-7.09.11-PM.png" srcSet="/static/e1d00bbd9438365a6d613f7fc59440a2/759d4/Screen-Shot-2016-01-09-at-7.09.11-PM.png 105w,/static/e1d00bbd9438365a6d613f7fc59440a2/6a467/Screen-Shot-2016-01-09-at-7.09.11-PM.png 210w,/static/e1d00bbd9438365a6d613f7fc59440a2/4c3b7/Screen-Shot-2016-01-09-at-7.09.11-PM.png 258w" sizes="(max-width: 258px) 100vw, 258px" loading="lazy"/>
+  </a>
+    </span></p><p>Now select the needed app group and enjoy. Save this script as ’<b>LaunchAppGroup</b>’. The AppleScript saves the script as <b>.scpt</b> extension.</p><p>We have one more task left. Having a <b>.scpt</b> extension will not help us much. Because you can’t just double-click to launch your application. Apple Script gives us export option to export our script as <b>.app</b> which can be used to launch our developed application. Click on <b>File &gt; Export</b> and use the same name, but select <b>Application</b> from the <b>File Format</b> drop down. Also, check the <b>Run-only</b> checkbox.</p><p>Now you can double-click the app to launch our developed application. I would preferably keep this app in Desktop or Applications folder to easily accessible.</p></div></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-71748535-1', 'auto', {});
+      
+      
+      
+      
+      
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/automating-tasks-using-apple-script/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-2c9f7254a1b87ed1aa9a.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2d0fc0de1872f24a0bdc.js"],"component---src-templates-post-js":["/component---src-templates-post-js-95831d510dcf9cd9f785.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c216697d184e0051dad9.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9d9195261b37718958b6.js"]};/*]]>*/</script><script src="/webpack-runtime-102ada64f5dd71233fc2.js" async=""></script><script src="/app-2c9f7254a1b87ed1aa9a.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-95831d510dcf9cd9f785.js" async=""></script><script src="/styles-7ff825e96dfd35551199.js" async=""></script></body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.246d67a4ef7e9adeefa5.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true">Test Automation using NightWatch - Part 1</title><link data-react-helmet="true" rel="canonical" href="https://vimalrajselvam.com/test-automation-using-nightwatch-part-1/"/><meta data-react-helmet="true" name="description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" property="og:url" content="https://vimalrajselvam.com/test-automation-using-nightwatch-part-1/"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:title" content="Test Automation using NightWatch - Part 1"/><meta data-react-helmet="true" property="og:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" property="og:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:creator" content="@email2vimalraj"/><meta data-react-helmet="true" name="twitter:title" content="Test Automation using NightWatch - Part 1"/><meta data-react-helmet="true" name="twitter:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="twitter:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><style type="text/css">.gatsby-resp-image-image{width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;color:transparent;}</style><link rel="alternate" type="application/rss+xml" title="Vimalraj Selvam Blog&#x27;s RSS Feed" href="/rss.xml"/><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><link rel="icon" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#1B1F23"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link as="script" rel="preload" href="/styles-7ff825e96dfd35551199.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-95831d510dcf9cd9f785.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-2c9f7254a1b87ed1aa9a.js"/><link as="script" rel="preload" href="/webpack-runtime-102ada64f5dd71233fc2.js"/><link as="fetch" rel="preload" href="/page-data/post/test-automation-using-nightwatch-part-1/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Test Automation using NightWatch - Part 1</h2><h2 id="nightwatch-examples">Nightwatch Examples</h2><p>In this blog series, I’m going to show you what I’ve learned automating using <a href="http://nightwatchjs.org/">NightwatchJs</a>.</p><p>A NightwatchJs is an E2E testing framework used for automating browser web apps. It uses the W3C WebDriver API as the underlying to perform automation.</p><p>It has the built in test runner, which can run the tests even in parallel, by group and tags. It comes with the out-of-the box solution to execute tests on cloud testing services, such as SauceLabs and BrowserStack.</p><p>By default, it provides the JUnit XML report generated after the execution which is easy to integrate with the CI tools such as Jenkins, TeamCity and so on.</p><h2 id="what-are-we-going-to-automate">What are we going to automate?</h2><p>We are going to automate <a href="http://the-internet.herokuapp.com/">The Internet</a> website. While performing automation, we together solve problems / challenges.</p><p>Let’s start!</p><h2 id="pre-requisites">Pre-requisites</h2><ul><li>Node with NPM (I’m using Node v7.1.0 and npm v3.10.9)</li><li>(Optional) Yarn (I’m using Yarn v0.17.6)</li><li>Chrome browser (My chrome version is 57.0)</li></ul><h2 id="sample-code">Sample code</h2><p>This is an optional step. The example that we are going to see in this article are available in the github. Follow the steps to clone and run:</p><pre><code class="language-bash">git clone https://github.com/email2vimalraj/nightwatch-example.git
+cd nightwatch-example
+yarn
+</code></pre><h2 id="setup">Setup</h2><p>Create a directory:</p><pre><code class="language-bash">mkdir nightwatch-example
+cd nightwatch-example
+</code></pre><p>Initiate the node js project using:</p><pre><code class="language-bash">yarn init
+</code></pre><p>Accept all the default parameters which yarn prompts.</p><p>Install NightwatchJS as dev dependency using:</p><pre><code class="language-bash">yarn add --dev nightwatch
+</code></pre><h2 id="configuration">Configuration</h2><p>The nightwatch test runner uses the json file which is used as configuration for the test runner.</p><p>By default, if a file called <b>nightwatch.json</b> available in the current directory, test runner will pick it up.</p><p>Let’s create the following <b>nightwatch.json</b> in the project’s root directory:</p><pre><code class="language-js">{
+  &quot;src_folders&quot;: [&quot;tests&quot;],
+  &quot;output_folder&quot;: &quot;reports&quot;,
+
+  &quot;test_settings&quot;: {
+    &quot;default&quot;: {
+      &quot;launch_url&quot;: &quot;http://the-internet.herokuapp.com/&quot;,
+      &quot;desiredCapabilities&quot;: {
+      &quot;browserName&quot;: &quot;chrome&quot;
+      }
+    }
+  }
+}
+</code></pre><ul><li><p><code>src_folder</code> - will contain a list of folders where the test scripts are placed. In this example, we’ll be keeping all our tests in the <strong>tests</strong> directory</p></li><li><p><code>output_folder</code> - this config let’s you place the generated reports in the specified directory. Here, the reports will be generated in the <strong>reports</strong> directory.</p></li><li><p><code>test_settings</code> - This will contain all test related settings, in other words, we can have settings for each different environment. The <strong>default</strong> is mandatory and a default setting used by tests.</p></li><li><p><code>launch_url</code> - Let’s you define the default url that we use to automate. We’ll look further on how we use this setting.</p></li><li><p><code>desiredCapabilities</code> - It is the Webdriver’s desired capabilities configuration. Here we’re using Chrome as the default browser for our automation.</p></li></ul><h2 id="chromedriver-setup">Chromedriver setup</h2><p>There are two ways to configure Chromedriver to automate on the chrome browser.</p><ul><li>Using Selenium Server (requires Java)</li><li>Using Standalone (no dependency on Java)</li></ul><p>In this example, we will be using the Standalone usage since there is no dependency on Java. But it requires a one-time configuration. Let’s install the <b>ChromeDriver</b> npm package:</p><pre><code class="language-bash">yarn add --dev chromedriver
+</code></pre><p>Then disable the selenium server in the <code>nightwatch.json</code> file by adding the following configuration at the end:</p><pre><code class="language-js">&quot;selenium&quot;: {
+  &quot;start_process&quot;: false
+}
+</code></pre><p>Then in the <b>test_settings</b> configuration, we’ll have to configure the selenium port and host since the default port used by chromedriver is <b>9515</b>. Let’s update the <b>test_settings</b> config:</p><pre><code class="language-js">&quot;selenium_port&quot;: 9515,
+&quot;selenium_host&quot;: &quot;localhost&quot;,
+&quot;default_path_prefix&quot;: &quot;&quot;
+</code></pre><p>We have to clear the <code>default_path_prefix</code>, as it is by default set to <code>/wd/hub</code> which chromedriver doesn’t require it.</p><h3 id="create-a-chrome-driver-global-file">Create a chrome driver global file</h3><p>A global file is the js file which will be loaded by the test runner and made available to the test. We’ll be using this file to start the chromedriver before the test starts and quits the chromedriver after the test finishes its execution.</p><p>Let’s create a file called <b>chromedriver.global.js</b>:</p><pre><code class="language-js">var chromedriver = require(&#x27;chromedriver&#x27;)
+
+module.exports = {
+  before: function(done) {
+    chromedriver.start()
+    done()
+  },
+
+  after: function(done) {
+    chromedriver.stop()
+    done()
+  }
+}
+</code></pre><p>Now we’ll have to load this file through the configuration file. Add the following config at the end of the <code>nightwatch.json</code>:</p><pre><code class="language-js">&quot;globals_path&quot;: &quot;./chromedriver.global.js&quot;
+</code></pre><p>Our <code>nightwatch.json</code> should look like this now:</p><pre><code class="language-js">{
+  &quot;src_folders&quot;: [&quot;tests&quot;],
+  &quot;output_folder&quot;: &quot;reports&quot;,
+
+  &quot;selenium&quot;: {
+    &quot;start_process&quot;: false
+  },
+
+  &quot;test_settings&quot;: {
+    &quot;default&quot;: {
+      &quot;launch_url&quot;: &quot;http://the-internet.herokuapp.com/&quot;,
+      &quot;selenium_port&quot;: 9515,
+      &quot;selenium_host&quot;: &quot;localhost&quot;,
+      &quot;default_path_prefix&quot;: &quot;&quot;,
+      &quot;desiredCapabilities&quot;: {
+        &quot;browserName&quot;: &quot;chrome&quot;
+      }
+    }
+  },
+
+  &quot;globals_path&quot;: &quot;./chromedriver.global.js&quot;
+}
+</code></pre><h2 id="create-our-first-test">Create our first test</h2><p>Let’s create a <b>HomeTest.js</b> file in the <b>tests</b> directory:</p><pre><code class="language-js">module.exports = {
+  &#x27;Test Home Page&#x27;: function(client) {
+    client.init()
+    client.waitForElementVisible(&#x27;body&#x27;, 1000)
+    client.assert.title(&#x27;The Internet&#x27;)
+    client.expect.element(&#x27;.heading&#x27;).text.to.equal(&#x27;Welcome to the Internet&#x27;)
+    client.end()
+  }
+}
+</code></pre><p>Each file in the <code>tests</code> directory is considered as test suite. Here, in the <code>HomeTest.js</code> we have created one test called <b>Test Home Page</b>. Each test function will have one parameter which holds the webdriver instance. Here, we are calling that instance as <b>client</b>. All the nightwatch webdriver commands are accessed through this instance.</p><p>The <code>client.init()</code> will launch the browser with the url configured in the <b>launch_url</b> property in the nightwatch.json. In our case, it will open the chrome browser and launch <a href="http://the-internet.herokuapp.com/">http://the-internet.herokuapp.com/</a>.</p><p>Then it will wait for the <code>body</code> tag to be visible for maximum of 1 sec.
+After that we assert the title to be equal to <b>The Internet</b>. Then we expect an element with class attribute <code>.heading</code> and with text to be equal to <b>Welcome to the Internet</b>.</p><p>The <code>client.end()</code> is mandatory to close the browser instance and stop the selenium server instance.</p><p>Let’s execute our first test. Spin off your terminal / command prompt, and execute your test as follows:</p><pre><code class="language-bash">./node_modules/.bin/nightwatch
+</code></pre><p>This should execute your tests and you can watch the result in your console:</p><pre><code class="language-bash">[home test] Test Suite
+==========================
+
+Running: Test Home Page
+✔ Element &amp;lt;body&amp;gt; was visible after 44 milliseconds.
+✔ Testing if the page title equals &quot;The Internet&quot;.
+✔ Expected element &amp;lt;.heading&amp;gt; text to equal: &quot;Welcome to the Internet&quot;
+
+OK. 3 assertions passed. (20.669s)
+</code></pre><p>Awesome, we successfully created our test and executed. Let’s add one more test:</p><pre><code class="language-js">module.exports = {
+  &#x27;Test Home Page&#x27;: function(client) {
+    client.init()
+    client.waitForElementVisible(&#x27;body&#x27;, 1000)
+    client.assert.title(&#x27;The Internet&#x27;)
+    client.expect.element(&#x27;.heading&#x27;).text.to.equal(&#x27;Welcome to the Internet&#x27;)
+  },
+
+  &#x27;Navigate to Broken Images page&#x27;: function(client) {
+    client.click(&quot;a[href=&#x27;/broken_images&#x27;]&quot;)
+    client.expect.element(&#x27;.example &amp;gt; h3&#x27;).text.to.equal(&#x27;Broken Images&#x27;)
+    client.end()
+  }
+}
+</code></pre><p>Here we have added another test called <b>Navigate to Broken Images page</b> in which we navigate to the <b>Broken Images</b> page and assert the heading.
+Note that we have removed the <code>client.end()</code> from the first test and moved that to the second test.</p><p>Execute again and see both of your tests run.</p><p>Finally, we have two tests which runs successfully.</p><p>In the next part, we’ll make our tests more maintainable using page object pattern.</p></div></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-71748535-1', 'auto', {});
+      
+      
+      
+      
+      
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/test-automation-using-nightwatch-part-1/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-2c9f7254a1b87ed1aa9a.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2d0fc0de1872f24a0bdc.js"],"component---src-templates-post-js":["/component---src-templates-post-js-95831d510dcf9cd9f785.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c216697d184e0051dad9.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9d9195261b37718958b6.js"]};/*]]>*/</script><script src="/webpack-runtime-102ada64f5dd71233fc2.js" async=""></script><script src="/app-2c9f7254a1b87ed1aa9a.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-95831d510dcf9cd9f785.js" async=""></script><script src="/styles-7ff825e96dfd35551199.js" async=""></script></body></html>

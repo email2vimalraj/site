@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.246d67a4ef7e9adeefa5.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.17.15"/><title data-react-helmet="true">Appium Parallel Execution using TestNG</title><link data-react-helmet="true" rel="canonical" href="https://vimalrajselvam.com/appium-parallel-execution-using-testng/"/><meta data-react-helmet="true" name="description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" property="og:url" content="https://vimalrajselvam.com/appium-parallel-execution-using-testng/"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:title" content="Appium Parallel Execution using TestNG"/><meta data-react-helmet="true" property="og:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" property="og:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"/><meta data-react-helmet="true" name="twitter:creator" content="@email2vimalraj"/><meta data-react-helmet="true" name="twitter:title" content="Appium Parallel Execution using TestNG"/><meta data-react-helmet="true" name="twitter:description" content="
+      I&#x27;m known as Vimalraj Selvam. I like to write code and teach. 
+      I&#x27;m passionate about latest technologies and distributed systems. 
+      I love logs and help building observability systems.
+    "/><meta data-react-helmet="true" name="twitter:image" content="https://vimalrajselvam.com/profile-pic.jpg"/><style data-styled="ikafup foMuCR gLpOGS" data-styled-version="4.4.1">
+/* sc-component-id: styles__MainContainer-t2oe9l-0 */
+.ikafup{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;margin-right:auto;margin-left:auto;} @media (min-width:62em){.ikafup{margin:auto;max-width:800px;}}
+/* sc-component-id: styles__PostContainer-t2oe9l-1 */
+.foMuCR{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px;border-bottom:1px solid #2f363d;}
+/* sc-component-id: styles__PostTitle-t2oe9l-2 */
+.gLpOGS{margin-bottom:10px;} .gLpOGS a{-webkit-text-decoration:none;text-decoration:none;color:#fff;} .gLpOGS a:hover{-webkit-text-decoration:none;text-decoration:none;color:tomato;}</style><style type="text/css">.gatsby-resp-image-image{width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;color:transparent;}</style><link rel="alternate" type="application/rss+xml" title="Vimalraj Selvam Blog&#x27;s RSS Feed" href="/rss.xml"/><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><link rel="icon" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#1B1F23"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=13fd76e4f9919bdc31dfd54214539e83"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link as="script" rel="preload" href="/styles-7ff825e96dfd35551199.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-95831d510dcf9cd9f785.js"/><link as="script" rel="preload" href="/commons-0e8c48515ea2cb7bd8b7.js"/><link as="script" rel="preload" href="/app-2c9f7254a1b87ed1aa9a.js"/><link as="script" rel="preload" href="/webpack-runtime-102ada64f5dd71233fc2.js"/><link as="fetch" rel="preload" href="/page-data/post/appium-parallel-execution-using-testng/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="styles__MainContainer-t2oe9l-0 ikafup"><div class="styles__PostContainer-t2oe9l-1 foMuCR"><h2 class="styles__PostTitle-t2oe9l-2 gLpOGS">Appium Parallel Execution using TestNG</h2><p>This is the follow-up post on the <a href="../selenium-grid-for-appium-mobile-automation">Selenium Grid for Appium mobile automation</a>.</p><p>Continuing from the example, I hope you have grid hub running with two various appium nodes which has unique <code>applicationName</code>.</p><p>This post will focus on showing you on how we execute same tests across multiple devices in parallel. Because, often as test engineers, we have to sign-off our tests in various mobile platforms and devices. Let’s get into action.</p><p>Create a TestNG class as follows:</p><pre><code class="language-java">package com.vimalselvam.appium;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.*;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class AppiumTest {
+
+ private AndroidDriver driver;
+ private String applicationName;
+
+ @Factory(dataProvider = &quot;parallelDp&quot;)
+ public AppiumTest(String applicationName) {
+   this.applicationName = applicationName;
+ }
+
+ @DataProvider(name = &quot;parallelDp&quot;)
+ public static Object[][] parallelDp() {
+   return new Object[][] {
+     {&quot;Samsung S4&quot;},
+     {&quot;Samsung S5&quot;}
+   };
+ }
+
+ @BeforeClass
+ public void setup() throws MalformedURLException {
+   DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+   desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, &quot;ANDROID&quot;);
+   desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, &quot;ANDROID&quot;);
+   desiredCapabilities.setCapability(&quot;applicationName&quot;, this.applicationName);
+   desiredCapabilities.setCapability(MobileCapabilityType.APP, &quot;https://github.com/appium/java-client/raw/master/src/test/java/io/appium/java_client/ApiDemos-debug.apk&quot;);
+   driver = new AndroidDriver(new URL(&quot;http://127.0.0.1:4444/wd/hub&quot;), desiredCapabilities);
+ }
+
+ @Test
+ public void launchTest() throws InterruptedException {
+   System.err.println(&quot;Thread id: &quot; + Thread.currentThread().getId());
+   Thread.sleep(10000);
+ }
+
+ @Test(dependsOnMethods = {&quot;launchTest&quot;})
+ public void clickTest() {
+   driver.findElementById(&quot;android:id/content&quot;)
+   .findElement(MobileBy.AccessibilityId(&quot;Graphics&quot;)).click();
+ }
+
+ @AfterClass
+ public void teardown() {
+   if (driver != null) {
+     driver.quit();
+   }
+ }
+}
+</code></pre><p>Note here, I’ve created a <code>@Factory</code> constructor with the data provider called <code>parallelDp</code>. Refer <a href="http://testng.org/doc/documentation-main.html#factories">here</a> for more about <code>@Factory</code>. The data provider method produces two String objects of the <code>applicationName</code> which are the same as that I had created during my appium node configuration. Make sure the applicationName here are matches with your node configurations.</p><p>I am sure you don’t want me to explain the rest of the test code which simply explains by itself. Let’s move on.</p><p>Now create your TestNG Suite xml file as follows:</p><pre><code class="language-xml">&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Test&quot; verbose=&quot;1&quot; data-provider-thread-count=&quot;2&quot; thread-count=&quot;2&quot; parallel=&quot;classes&quot;&gt;
+  &lt;test name=&quot;TestClass&quot; thread-count=&quot;2&quot; parallel=&quot;instances&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.vimalselvam.appium.AppiumTest&quot; /&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt;
+&lt;/suite&gt;
+</code></pre><p>I’ve set the suite parallel attribute as classes, so that it will create two instances of my test class in parallel as specified in my <code>thread-count</code>. That’s it, execute and see the magic in the below video.</p><p><a href="http://www.youtube.com/watch?v=Gza3k5BTn9g" title="Appium Parallel Execution"><img src="http://img.youtube.com/vi/Gza3k5BTn9g/0.jpg" alt="Appium Parallel Execution"/></a></p></div></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-71748535-1', 'auto', {});
+      
+      
+      
+      
+      
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/appium-parallel-execution-using-testng/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-2c9f7254a1b87ed1aa9a.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2d0fc0de1872f24a0bdc.js"],"component---src-templates-post-js":["/component---src-templates-post-js-95831d510dcf9cd9f785.js"],"component---src-pages-about-js":["/component---src-pages-about-js-c216697d184e0051dad9.js"],"component---src-pages-index-js":["/component---src-pages-index-js-9d9195261b37718958b6.js"]};/*]]>*/</script><script src="/webpack-runtime-102ada64f5dd71233fc2.js" async=""></script><script src="/app-2c9f7254a1b87ed1aa9a.js" async=""></script><script src="/commons-0e8c48515ea2cb7bd8b7.js" async=""></script><script src="/component---src-templates-post-js-95831d510dcf9cd9f785.js" async=""></script><script src="/styles-7ff825e96dfd35551199.js" async=""></script></body></html>
