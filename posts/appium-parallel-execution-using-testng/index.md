@@ -1,5 +1,6 @@
 ---
-title: 'Appium Parallel Execution using TestNG'
+title: Appium Parallel Execution using TestNG
+description: Setting up the appium to execute tests parallely using TestNG and Selenium Grid
 date: 2016-07-24
 ---
 

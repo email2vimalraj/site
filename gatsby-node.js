@@ -125,7 +125,7 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId }) => {
 
     const fieldData = {
       title: node.frontmatter.title,
-      description: node.frontmatter.description,
+      description: node.frontmatter.description || node.frontmatter.title,
       tags: node.frontmatter.tags || [],
       slug,
       date: node.frontmatter.date,

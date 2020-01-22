@@ -1,5 +1,5 @@
 ---
-title: 'Appium Parallel Execution on OpenSTF'
+title: Appium Parallel Execution on OpenSTF
 description: Setting up the appium to execute tests parallely on various mobiles using OpenSTF
 date: 2016-08-07
 ---
