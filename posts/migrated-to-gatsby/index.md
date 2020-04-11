@@ -28,4 +28,8 @@ With ZEIT now, I own the following domains now:
 - https://vimalraj.dev
 - https://vimalrajselvam.com
 
+## PWA
+
+Now my site is fully PWA complaint, that means, you can install the site as a mobile app, view offline and get updates also. PWA apps are available for both iOS and Android phones. Do give a try.
+
 The source code of my blog is open-sourced and anyone can access this from [Github](https://github.com/email2vimalraj/site). Please feel free to send a pull request for any new feature to be added in the site or raise an issue in case you want me to address anything or write something about specifically.
