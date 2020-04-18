@@ -24,6 +24,8 @@ const SEO = ({ postMeta, isBlogPost }) => {
   const image = seo.image
   const url = postMeta.slug ? `${seo.siteUrl}${postMeta.slug}` : seo.siteUrl
 
+  console.log(image)
+
   return (
     <>
       <Helmet defer={false}>

@@ -76,7 +76,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+              return allMarkdownRemark.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
@@ -142,6 +142,6 @@ module.exports = {
     siteUrl: 'https://vimalrajselvam.com',
     twitterUsername: '@email2vimalraj',
     logo: '/favicon-32x32.png',
-    image: `https://vimalrajselvam.com/profile-pic.jpg`
+    image: `static/profile-pic.jpg`
   }
 }
