@@ -139,7 +139,7 @@ module.exports = {
       I'm passionate about latest technologies and distributed systems. 
       I love logs and help building observability systems.
     `,
-    siteUrl: 'https://vimselvam.com',
+    siteUrl: 'https://vimalselvam.com',
     twitterUsername: '@email2vimalraj',
     logo: '/favicon-32x32.png',
     image: `static/profile-pic.jpg`
