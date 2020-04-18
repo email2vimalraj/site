@@ -31,6 +31,11 @@ const SEO = ({ postMeta, isBlogPost }) => {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="image" content={image} />
+        {/* Google site verification */}
+        <meta
+          name="google-site-verification"
+          content="4Dmz3x3wmcReYj_Mqb_2zt-45bD8YRhRDzwWNEst3Fw"
+        />
         <link rel="canonical" href={url} />
 
         {/* OpenGraph tags */}
