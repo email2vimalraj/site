@@ -10,14 +10,13 @@ But what if there is a plugin that helps you build the page locators as you insp
 
 Here, meet _<a href="https://chrome.google.com/webstore/detail/elementer/conbkbehobncjfpbealkoobidhipknok?hl=en" target="_blank" rel="noopener">Elementer</a>_. The chrome extension which builds your element locator strategy.
 
-<a href="https://chrome.google.com/webstore/detail/elementer/conbkbehobncjfpbealkoobidhipknok?hl=en" target="_blank" rel="noopener">![Elementer Logo](./elementer-logo.png)</a>
+![Elementer Logo](./elementer-logo.png)
 
 ## Pre-requisite
 * Chrome browser
 * <a href="https://chrome.google.com/webstore/detail/elementer/conbkbehobncjfpbealkoobidhipknok?hl=en" target="_blank" rel="noopener">Elementer Chrome Extension</a>
 
 ## Gist
-
 Create, Edit & Update Page Element files using the plugin and export to JSON. This page file contains element name, locator entries across locale. It can be used by any page management library but we have tested with <a href="https://github.com/RationaleEmotions/SimpleSe" target="_blank" rel="noopener">SimpleSe</a> framework. Thanks to <a href="https://in.linkedin.com/in/krmahadevan" target="_blank" rel="noopener">Krishnan Mahadevan</a> and <a href="https://in.linkedin.com/in/dineshkumar-kuppan" target="_blank" rel="noopener">Dineshkumar Kuppan</a> for helping in providing continuous feedback in improving the product with SimpleSe framework.
 
 ## Creation

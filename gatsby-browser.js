@@ -71,6 +71,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5 {
+    margin-top: 20px;
+    margin-bottom: 10px;
     font-family: 'Roboto', monospace, sans-serif;
     font-weight: bold;
   }
@@ -91,7 +93,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: #fff;
+    color: tomato;
 
     &:hover {
       text-decoration: none;
